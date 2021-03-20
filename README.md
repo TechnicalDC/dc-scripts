@@ -6,8 +6,8 @@ Various shell scripts for rofi
 
 ## Screenshots
 
-Power menu
+Power menu <br>
 ![alt text](https://github.com/TechnicalDC/rofi-scripts/blob/main/screenshots/powermenu.png "rofi power menu")
 
-Scrot menu
+Scrot menu <br>
 ![alt text](https://github.com/TechnicalDC/rofi-scripts/blob/main/screenshots/scrotmenu.png "rofi scrot menu")
