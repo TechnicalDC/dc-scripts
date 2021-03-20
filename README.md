@@ -6,6 +6,9 @@ Various shell scripts for rofi
 
 ## Screenshots
 
+Config manu <br>
+![alt text](https://github.com/TechnicalDC/rofi-scripts/blob/main/screenshots/configmenu.png "rofi config menu")
+
 Power menu <br>
 ![alt text](https://github.com/TechnicalDC/rofi-scripts/blob/main/screenshots/powermenu.png "rofi power menu")
 
