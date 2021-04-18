@@ -7,11 +7,11 @@ Various shell scripts for rofi
 
 ## Screenshots
 
-Config manu <br>
-![alt text](https://github.com/TechnicalDC/rofi-scripts/blob/main/screenshots/configmenu.png "rofi config menu")
+Config menu <br>
+![config menu](https://github.com/TechnicalDC/rofi-scripts/blob/main/screenshots/2021-04-18-195416_1366x768_scrot.png "rofi config menu")
 
 Power menu <br>
-![alt text](https://github.com/TechnicalDC/rofi-scripts/blob/main/screenshots/powermenu.png "rofi power menu")
+![power menu](https://github.com/TechnicalDC/rofi-scripts/blob/main/screenshots/2021-04-18-195514_1366x768_scrot.png "rofi power menu")
 
 Scrot menu <br>
-![alt text](https://github.com/TechnicalDC/rofi-scripts/blob/main/screenshots/scrotmenu.png "rofi scrot menu")
+![scrot menu](https://github.com/TechnicalDC/rofi-scripts/blob/main/screenshots/2021-04-18-195452_1366x768_scrot.png "rofi scrot menu")
