@@ -1,14 +1,8 @@
 #!/bin/bash
 
-#                         __                                
-# .-----.----.----.-----.|  |_  .--------.-----.-----.--.--.
-# |__ --|  __|   _|  _  ||   _| |        |  -__|     |  |  |
-# |_____|____|__| |_____||____| |__|__|__|_____|__|__|_____|
-
-
-option1="entire screen"
-option2="focused window"
-option3="select area"
+option1=" entire screen"
+option2=" focused window"
+option3=" select area"
 
 options="$option1\n$option2\n$option3"
 
