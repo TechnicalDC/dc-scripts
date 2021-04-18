@@ -1,14 +1,9 @@
 #!/bin/bash
 
-# .-----.-----.--.--.--.-----.----. .--------.-----.-----.--.--.
-# |  _  |  _  |  |  |  |  -__|   _| |        |  -__|     |  |  |
-# |   __|_____|________|_____|__|   |__|__|__|_____|__|__|_____|
-# |__| 
-
-option1="lock"
-option2="logout"
-option3="reboot"
-option4="power off"
+option1=" lock"
+option2=" logout"
+option3=" reboot"
+option4=" power off"
 
 options="$option1\n$option2\n$option3\n$option4"
 
@@ -18,7 +13,7 @@ case $choice in
 	$option1)
 		mantablockscreen -cc ;;
 	$option2)
-		bspc quit || i3-msg exit ;;
+		bspc quit || i3-msg exit || herbstclient quit ;;
 	$option3)
 		systemctl reboot ;;
 	$option4)
