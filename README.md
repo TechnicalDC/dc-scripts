@@ -1,9 +1,10 @@
 # rofi-scripts
 Various shell scripts for rofi
 
-* `powermenu.sh` :menu for shutdown, reboot, lock, logout
-* `scrotmenu.sh`: menu for taking screenshots
-* `configmenu.sh`: menu opening configuration files
+* `rofi-powermenu.sh` :menu for shutdown, reboot, lock, logout
+* `rofi-scrotmenu.sh`: menu for taking screenshots
+* `rofi-configmenu.sh`: menu opening configuration files
+* `rofi-quickmarks.sh`: menu for opening quickmarks in qutebrowser
 
 ## Screenshots
 
