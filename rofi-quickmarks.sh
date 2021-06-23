@@ -15,7 +15,5 @@
 url=$(cat ~/.config/qutebrowser/quickmarks | cut -d' ' -f'2' | rofi -dmenu -p 'open')
 if [ ! -v ${url} ]; then
   qutebrowser $url
-else
-  notify-send -a "Rofi" "Not selected anything" -i 'dialog-error' -t 5000 
 fi
 
