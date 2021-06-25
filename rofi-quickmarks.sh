@@ -14,6 +14,6 @@
 
 url=$(cat ~/.config/qutebrowser/quickmarks | cut -d' ' -f'2' | rofi -dmenu -p 'open')
 if [ ! -v ${url} ]; then
-  qutebrowser $url
+  qutebrowser --target window $url
 fi
 
