@@ -12,8 +12,12 @@
 # This script requires rofi and qutebrowser to work (if you prefer other browser than replace qutebrowser command with
 # command that launch your browser)
 
+file="$HOME/.config/qutebrowser/quickmarks"
 url=$(cat ~/.config/qutebrowser/quickmarks | cut -d' ' -f'2' | rofi -dmenu -p 'open')
 if [ ! -v ${url} ]; then
-  qutebrowser --target window $url
+	if grep -q $url "$file"; then
+		qutebrowser --target window $url
+	else
+  		qutebrowser $url
+	fi
 fi
-
