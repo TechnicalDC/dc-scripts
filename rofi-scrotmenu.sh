@@ -20,9 +20,10 @@ choice=$(echo -e "$options" | rofi -dmenu -no-show-icons -no-sidebar-mode -lines
 
 case $choice in
 	$option1)
-		scrot -e 'mv $f ~/Pictures/Scrot/' ;;
+		scrot -e 'mv $f ~/Pictures/Scrot/' && notify-send -a 'Scrot' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;; 
 	$option2)
-		scrot -u -b -e 'mv $f ~/Pictures/Scrot/' ;;
+		scrot -u -b -e 'mv $f ~/Pictures/Scrot/' && notify-send -a 'Scrot' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;;
 	$option3)
-		scrot -s -e 'mv $f ~/Pictures/Scrot/' ;;
+		scrot -s -e 'mv $f ~/Pictures/Scrot/' && notify-send -a 'Scrot' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;;
+
 esac
