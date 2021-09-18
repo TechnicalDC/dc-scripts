@@ -9,13 +9,13 @@ Various shell scripts for rofi
 ## Screenshots
 
 Config menu <br>
-![config menu](https://github.com/TechnicalDC/rofi-scripts/blob/main/screenshots/rofi-configmenu.png "rofi config menu")
+![config menu](https://github.com/TechnicalDC/rofi-scripts/blob/main/Screenshots/rofi-configmenu.png)
 
 Power menu <br>
-![power menu](https://github.com/TechnicalDC/rofi-scripts/blob/main/screenshots/rofi-powermenu.png "rofi power menu")
+![power menu](https://github.com/TechnicalDC/rofi-scripts/blob/main/Screenshots/rofi-powermenu.png)
 
 Scrot menu <br>
-![scrot menu](https://github.com/TechnicalDC/rofi-scripts/blob/main/screenshots/rofi-scrotmenu.png "rofi scrot menu")
+![scrot menu](https://github.com/TechnicalDC/rofi-scripts/blob/main/Screenshots/rofi-scrotmenu.png)
 
 Quickmarks menu <br>
-![quickmarks menu](https://github.com/TechnicalDC/rofi-scripts/blob/main/screenshots/rofi-quickmarks.png "rofi quickmarks menu")
+![quickmarks menu](https://github.com/TechnicalDC/rofi-scripts/blob/main/Screenshots/rofi-quickmarks.png)
