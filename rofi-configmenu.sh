@@ -15,6 +15,8 @@ MYEDITOR="urxvt -e nvim"
 
 declare -A options
 options[aliases]="$HOME/.aliases"
+options[awesome]="$HOME/.config/awesome/rc.lua"
+options[awesome_theme]="$HOME/.config/awesome/theme.lua"
 options[bspwm]="$HOME/.config/bspwm/bspwmrc"
 options[colors]="$HOME/.Xresources.d/colors"
 options[dunst]="$HOME/.config/dunst/dunstrc"
