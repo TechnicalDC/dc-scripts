@@ -16,7 +16,7 @@ option3=" select area"
 
 options="$option1\n$option2\n$option3"
 
-choice=$(echo -e "$options" | rofi -dmenu -no-show-icons -no-sidebar-mode -lines 3 -width 20 -p "scrot") 
+choice=$(echo -e "$options" | rofi -dmenu -no-show-icons -no-sidebar-mode -lines 3 -width 20 -p " ") 
 
 case $choice in
 	$option1)

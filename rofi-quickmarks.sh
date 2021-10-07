@@ -13,7 +13,7 @@
 # command that launch your browser)
 
 file="$HOME/.config/qutebrowser/quickmarks"
-url=$(cat ~/.config/qutebrowser/quickmarks | cut -d' ' -f'2' | rofi -dmenu -p 'open')
+url=$(cat ~/.config/qutebrowser/quickmarks | cut -d' ' -f'2' | rofi -dmenu -p ' ')
 if [ ! -v ${url} ]; then
 	if grep -q $url "$file"; then
 		qutebrowser --target window $url
