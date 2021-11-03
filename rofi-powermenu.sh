@@ -15,7 +15,7 @@ option4=" power off"
 
 options="$option1\n$option2\n$option3\n$option4"
 
-choice=$(echo -e "$options" | rofi -dmenu -no-show-icons -lines 4 -width 20 -p " ") 
+choice=$(echo -e "$options" | rofi -dmenu -i -no-show-icons -lines 4 -width 20 -p " ") 
 
 case $choice in
 	$option1)
