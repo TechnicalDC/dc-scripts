@@ -8,8 +8,13 @@
 # Author: Dilip Chauhan
 # Github: https://github/TechnicalDC
 
-choice=$(ls -a | rofi -dmenu -i -lines 12 -p "Open")
+while :
+do
+	choice=$(ls -a | rofi -dmenu -i -lines 12 -p "Open")
 
-cd $choice
-
-xdg-open $choice
+	if [ -d $choice ]; then
+		cd $choice
+	else
+		xdg-open $choice
+	fi
+done
