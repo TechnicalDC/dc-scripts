@@ -8,9 +8,19 @@
 # Author: Dilip Chauhan
 # Github: https://github/TechnicalDC
 
-while :
+status=true
+while $status
 do
 	choice=$(ls -a | rofi -dmenu -i -lines 12 -p "Open")
+
+	key=""
+	read -sn3 $key
+
+	if (( $key -eq "^[" ))
+	then
+		status=false
+		exit
+	fi
 
 	if [ -d $choice ]; then
 		cd $choice
