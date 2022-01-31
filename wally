@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#				   __ __        
+# .--.--.--.---.-.|  |  |.--.--.
+# |  |  |  |  _  ||  |  ||  |  |
+# |________|___._||__|__||___  |
+#					     |_____|
+
+cp $1 ~/.cache/wal/wallpaper.jpg
+
+# nitrogen --save --set-zoom-fill $fullpath &&
+feh --bg-fill $1 &&
+wal -i $1 &&
+mantablockscreen -i $1 
+
+# script that generates zathurarc
+genzathurarc >> ~/.config/zathura/zathurarc
+notify-send -a 'Sxiv' 'Them changed...' -i 'nitrogen' 
