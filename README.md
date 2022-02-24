@@ -2,9 +2,14 @@
 Various shell scripts for rofi
 
 * **rofi-powermenu.sh:** menu for shutdown, reboot, lock, logout
-* **rofi-scrotmenu.sh:** menu for taking screenshots (requires `scrot`)
+* **rofi-scrotmenu.sh:** menu for taking screenshots 
 * **rofi-configmenu.sh:** menu opening configuration files
 * **rofi-quickmarks.sh:** menu for opening quickmarks in qutebrowser
+* **genzathurarc:** script for generating zathurarc with pywal colorscheme
+* **player:** script for controlling mpd
+* **lightctl:** script for controlling brightness 
+* **wally:** script for generating pywal colorscheme 
+* **wal-telegram:** script for generating telegram theme based on pywal
 
 ## Screenshots
 
