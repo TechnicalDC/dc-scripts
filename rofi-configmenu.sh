@@ -32,8 +32,7 @@ options[ncmpcpp]="$HOME/.config/ncmpcpp/config"
 options[neofetch]="$HOME/.config/neofetch/config.conf"
 options[neovim]="$HOME/.config/nvim/init.vim"
 options[picom]="$HOME/.config/picom/picom.conf"
-options[polybar]="$HOME/.config/polybar/config-min"
-# options[polybar]="$HOME/.config/polybar/config"
+options[polybar]="$HOME/.config/polybar/config"
 options[qtile]="$HOME/.config/qtile/config.py"
 options[qtile_autorun]="$HOME/.config/qtile/autorun.sh"
 options[qutebrowser]="$HOME/.config/qutebrowser/config.py"
@@ -49,7 +48,8 @@ options[vim]="$HOME/.vimrc"
 options[xmonad]="$HOME/.xmonad/xmonad.hs"
 options[xresources]="$HOME/.Xresources"
 options[xterm]="$HOME/.Xresources.d/xterm"
-options[zathura]="$HOME/.config/zathura/zathurarc"
+# options[zathura]="$HOME/.config/zathura/zathurarc"
+options[zathura]="$HOME/.scripts/genzathurarc"
 options[zsh]="$HOME/.zshrc"
 
 # Piping the above array into dmenu.
@@ -60,7 +60,6 @@ choice=$(printf '%s\n' "${!options[@]}" | rofi -dmenu -i -no-show-icons -no-side
 if [ "$choice" ]; then
 	conf=$(printf '%s\n' "${options["${choice}"]}")
 	$MYEDITOR "$conf"
-
 # What to do if we just escape without choosing anything.
 else
     echo "Program terminated." && exit 0

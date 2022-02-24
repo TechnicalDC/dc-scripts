@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#  _____   __         __     __   ______ __   __ 
+# |     |_|__|.-----.|  |--.|  |_|      |  |_|  |
+# |       |  ||  _  ||     ||   _|   ---|   _|  |
+# |_______|__||___  ||__|__||____|______|____|__|
+#             |_____|                            
+
+current=$(xrandr --verbose | grep "Brightness:" | cut -d' ' -f2)
+
+if [ $current == 1.0 ] || [ $current -gt 1.0 ] && [ $1 == "inc" ]; then
+	notify-send -a 'LightCtl' 'Reached 1.0' -i 'dialog-information'
+	exit
+fi
+
+case $1 in 
+
+	"inc")
+		updated=$(echo "$current + $2" | bc)
+		;;
+
+	"dec")
+		updated=$(echo "$current - $2" | bc)
+		;;
+
+esac
+
+final=$(printf "%.1f \n" $updated)
+
+if [ $final != 0.0 ]; then
+	xrandr --output VGA1 --brightness $final
+	notify-send -a 'LightCtl' "$final brightness" -i 'dialog-information'
+fi

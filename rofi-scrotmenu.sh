@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 			  __                              
+#			 			  __                              
 # .-----.----.----.-----.|  |_.--------.-----.-----.--.--.
 # |__ --|  __|   _|  _  ||   _|        |  -__|     |  |  |
 # |_____|____|__| |_____||____|__|__|__|_____|__|__|_____|
@@ -17,7 +17,7 @@ option4=" Select area"
 
 options="$option1\n$option2\n$option3\n$option4"
 
-choice=$(echo -e "$options" | rofi -i -dmenu -no-show-icons -no-sidebar-mode -lines 4 -width 20 -p " ") 
+choice=$(echo -e "$options" | rofi -i -dmenu -no-show-icons -no-sidebar-mode -lines 4 -width 20 -p " ") 
 
 case $choice in
 	$option1)
