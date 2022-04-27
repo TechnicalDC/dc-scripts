@@ -15,6 +15,6 @@ xrdb $HOME/.Xresources
 mantablockscreen -i $1 
 
 # script that generates zathurarc
-genzathurarc >> ~/.config/zathura/zathurarc
-wal-telegram --wal
+bash $HOME/.scripts/genzathurarc >> ~/.config/zathura/zathurarc
+bash $HOME/.scripts/wal-telegram --wal
 notify-send -a 'Sxiv' 'Theme changed...' -i 'nitrogen' 
