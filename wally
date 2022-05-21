@@ -13,6 +13,7 @@ feh --bg-fill $1 &&
 wal -i $1 &&
 xrdb $HOME/.Xresources
 mantablockscreen -i $1 
+genstarttree
 
 # script that generates zathurarc
 bash $HOME/.scripts/genzathurarc >> ~/.config/zathura/zathurarc
