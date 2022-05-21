@@ -11,7 +11,7 @@
 
 # Replace nvim with the editor of your choice
 
-MYEDITOR="urxvt -e nvim"
+MYEDITOR="st -e nvim"
 
 declare -A options
 options[aliases]="$HOME/.aliases"
@@ -43,6 +43,7 @@ options[qutebrowser]="$HOME/.config/qutebrowser/config.py"
 options[ranger]="$HOME/.config/ranger/rc.conf"
 options[rofi]="$HOME/.config/rofi/config.rasi"
 options[spectrwm]="$HOME/.config/spectrwm/spectrwm.conf"
+options[starttree]="$HOME/.config/StartTree/config.yaml"
 options[sxhkd]="$HOME/.config/sxhkd/sxhkdrc"
 options[sxiv_config]="$HOME/.config/sxiv/config.h"
 options[sxiv_key_handler]="$HOME/.config/sxiv/exec/key-handler"
