@@ -16,6 +16,10 @@ mantablockscreen -i $1
 genstarttree
 
 # script that generates zathurarc
+bash $HOME/.scripts/gendunstrc >> ~/.config/dunst/dunstrc
 bash $HOME/.scripts/genzathurarc >> ~/.config/zathura/zathurarc
 bash $HOME/.scripts/wal-telegram --wal
+
+pkill dunst
+
 notify-send -a 'Sxiv' 'Theme changed...' -i 'nitrogen' 
