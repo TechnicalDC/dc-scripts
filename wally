@@ -10,7 +10,7 @@ cp $1 ~/.cache/wal/wallpaper.jpg
 
 # nitrogen --save --set-zoom-fill $fullpath &&
 feh --bg-fill $1 &&
-wal -i $1 &&
+wal -i $1 -a 90 &&
 xrdb $HOME/.Xresources
 mantablockscreen -i $1 
 genstarttree
