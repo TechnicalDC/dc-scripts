@@ -15,7 +15,7 @@ option4=" power off"
 
 options="$option1\n$option2\n$option3\n$option4"
 
-choice=$(echo -e "$options" | rofi -dmenu -i -no-show-icons -lines 4 -width 30 -p " $(uptime -p | cut -d\  -f2-)") 
+choice=$(echo -e "$options" | rofi -dmenu -i -no-show-icons -lines 4 -width 30 -p " " -mesg "Up $(uptime -p | cut -d\  -f2-)") 
 
 case $choice in
 	$option1)
