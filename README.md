@@ -5,9 +5,8 @@ Various shell scripts for rofi
 * **rofi-scrotmenu.sh:** menu for taking screenshots 
 * **rofi-configmenu.sh:** menu opening configuration files
 * **rofi-quickmarks.sh:** menu for opening quickmarks in qutebrowser
+* **rofi-mpc:** script from [Marco98](https://github.com/Marco98/rofi-mpc) with my few tweaks
 * **genzathurarc:** script for generating zathurarc with pywal colorscheme
-* **player:** script for controlling mpd
-* **lightctl:** script for controlling brightness 
 * **wally:** script for generating pywal colorscheme 
 * **wal-telegram:** script for generating telegram theme based on pywal
 
@@ -24,3 +23,6 @@ Scrot menu <br>
 
 Quickmarks menu <br>
 ![quickmarks menu](https://github.com/TechnicalDC/rofi-scripts/blob/main/images/rofi-quickmarks.png)
+
+Mpc <br>
+[rofi-mpc](https://github.com/TechnicalDC/rofi-scripts/blob/main/images/rofi-mpc.png)
