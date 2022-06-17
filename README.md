@@ -25,4 +25,4 @@ Quickmarks menu <br>
 ![quickmarks menu](https://github.com/TechnicalDC/rofi-scripts/blob/main/images/rofi-quickmarks.png)
 
 Mpc <br>
-[rofi-mpc](https://github.com/TechnicalDC/rofi-scripts/blob/main/images/rofi-mpc.png)
+![rofi-mpc](https://github.com/TechnicalDC/rofi-scripts/blob/main/images/rofi-mpc.png)
