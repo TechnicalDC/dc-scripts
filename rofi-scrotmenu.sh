@@ -10,6 +10,8 @@
 
 # This script requires scrot
 
+THEME="$HOME/.config/rofi/themes/minimal_dialog.rasi"
+
 option1=" Entire screen"
 option2=" Entire screen with delay"
 option3=" Focused window"
@@ -17,7 +19,7 @@ option4=" Select area"
 
 options="$option1\n$option2\n$option3\n$option4"
 
-choice=$(echo -e "$options" | rofi -i -dmenu -no-show-icons -no-sidebar-mode -lines 4 -width 30 -p " ") 
+choice=$(echo -e "$options" | rofi -theme $THEME -i -dmenu -no-show-icons -no-sidebar-mode -lines 4 -width 30 -p " ") 
 
 case $choice in
 	$option1)
@@ -27,7 +29,7 @@ case $choice in
 		delayoption2="Take screenshot with 5 sec delay"
 		delayoption3="Take screenshot with 10 sec delay"
 		delayoptions="$delayoption1\n$delayoption2\n$delayoption3"
-		delay=$(echo -e "$delayoptions" | rofi -i -dmenu -no-show-icons -no-sidebar-mode -lines 3 -width 30 -p " ") 
+		delay=$(echo -e "$delayoptions" | rofi -theme $THEME -i -dmenu -no-show-icons -no-sidebar-mode -lines 3 -width 30 -p " ") 
 
 		case $delay in
 

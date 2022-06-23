@@ -8,6 +8,8 @@
 # Author: Dilip Chauhan
 # Github: https://github/TechnicalDC
 
+THEME="$HOME/.config/rofi/themes/minimal_dialog.rasi"
+
 option1=" lock"
 option2=" logout"
 option3=" reboot"
@@ -15,7 +17,7 @@ option4=" power off"
 
 options="$option1\n$option2\n$option3\n$option4"
 
-choice=$(echo -e "$options" | rofi -dmenu -i -no-show-icons -lines 4 -width 30 -p " " -mesg "Up $(uptime -p | cut -d\  -f2-)") 
+choice=$(echo -e "$options" | rofi -dmenu -theme $THEME -i -no-show-icons -lines 4 -width 30 -p " ") 
 
 case $choice in
 	$option1)
