@@ -15,9 +15,11 @@ option2=" logout"
 option3=" reboot"
 option4=" power off"
 
-options="$option1\n$option2\n$option3\n$option4"
+options="$option1\n"
+options="$options$option2\n"
+options="$options$option3\n$option4"
 
-choice=$(echo -e "$options" | rofi -dmenu -theme $THEME -i -no-show-icons -lines 4 -width 30 -p " ") 
+choice=$(echo -e "$options" | rofi -dmenu -theme $THEME -i -no-show-icons -lines 4 -width 30 -p " " -location 0 -yoffset 0 -fixed-num-lines true) 
 
 case $choice in
 	$option1)
