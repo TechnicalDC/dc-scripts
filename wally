@@ -6,20 +6,53 @@
 # |________|___._||__|__||___  |
 #					     |_____|
 
-cp $1 ~/.cache/wal/wallpaper.jpg
+THEME="$HOME/.config/rofi/themes/minimal_dialog.rasi"
+WALLPAPERS_DIR="$HOME/Wallpapers"
+COLORSCHEMES_DIR="$HOME/.config/wal/colorschemes/dark"
 
-# nitrogen --save --set-zoom-fill $fullpath &&
-feh --bg-fill $1 &&
-wal -i $1 -a 90 &&
-xrdb $HOME/.Xresources
-mantablockscreen -i $1 
-genstarttree
+option1="Set wallpaper"
+option2="Set colorscheme"
+option3="Generate colorscheme from image"
+option4="Exit"
 
-# script that generates zathurarc
-bash $HOME/.scripts/gendunstrc >> ~/.config/dunst/dunstrc
-bash $HOME/.scripts/genzathurarc >> ~/.config/zathura/zathurarc
-bash $HOME/.scripts/wal-telegram --wal
+options="$option1\n$option2\n$option3\n$option4"
 
-pkill dunst
+choice=$(echo -e "$options" | rofi -theme $THEME -i -dmenu -no-show-icons -no-sidebar-mode -lines 4 -width 30 -p " " -location 0 -yoffset 0 -fixed-num-lines true) 
 
-notify-send -a 'Sxiv' 'Theme changed...' -i 'nitrogen' 
+post_run () {
+	xrdb $HOME/.Xresources
+	# mantablockscreen -i $1 &
+	genstarttree
+
+	# script that generates zathurarc
+	bash $HOME/.scripts/gendunstrc >> ~/.config/dunst/dunstrc
+	bash $HOME/.scripts/genzathurarc >> ~/.config/zathura/zathurarc
+	bash $HOME/.scripts/wal-telegram --wal
+
+	pkill dunst
+
+	notify-send -a 'Wally' 'Theme changed.' -t 1000
+}
+
+case $choice in
+	$option1)
+		WALLPAPER=$(sxiv -ot -N imagepicker $WALLPAPERS_DIR/*.jpg $WALLPAPERS_DIR/*.png $WALLPAPERS_DIR/*.jpeg $WALLPAPERS_DIR/*.webp)
+		feh --bg-fill $WALLPAPER 
+		cp $WALLPAPER ~/.cache/wal/wallpaper.jpg
+		;;
+	$option2)
+		COLOR=$(ls $COLORSCHEMES_DIR | cut -d'.' -f1 | rofi -theme $THEME -i -dmenu -no-show-icons -no-sidebar-mode -lines 4 -width 30 -location 0 -yoffset 0 -fixed-num-lines true)
+		wal --theme $COLORSCHEMES_DIR/$COLOR.json
+		post_run $WALLPAPER
+		;;
+	$option3)
+		WALLPAPER=$(sxiv -ot -N imagepicker $WALLPAPERS_DIR/*.jpg $WALLPAPERS_DIR/*.png $WALLPAPERS_DIR/*.jpeg $WALLPAPERS_DIR/*.webp)
+		feh --bg-fill $WALLPAPER 
+		wal -i $WALLPAPER
+		post_run $WALLPAPER
+		;;
+	$option4)
+		notify-send -a 'Wally' 'Exited.' -t 1000
+		exit ;;
+esac
+
