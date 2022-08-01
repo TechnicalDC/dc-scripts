@@ -1,10 +1,12 @@
 #!/bin/bash
 
-#				           __ __        
+#				   __ __        
 # .--.--.--.---.-.|  |  |.--.--.
 # |  |  |  |  _  ||  |  ||  |  |
 # |________|___._||__|__||___  |
 #					     |_____|
+# Github: https://github.com/TechnicalDC/dc-scripts
+
 
 THEME="$HOME/.config/rofi/themes/minimal_dialog.rasi"
 WALLPAPERS_DIR="$HOME/Wallpapers"
@@ -21,8 +23,10 @@ choice=$(echo -e "$options" | rofi -theme $THEME -i -dmenu -no-show-icons -no-si
 
 post_run () {
 	xrdb $HOME/.Xresources
-	# mantablockscreen -i $1 &
 	genstarttree
+	sed -i "/colorscheme/s/ [Aa-Zz]\+/ $1/" $HOME/.config/nvim/lua/colors/init.lua
+	sed -i "/theme =/s/themes\[\"[Aa-Zz]\+\"\],/themes[\"$1\"\]," $HOME/.config/nvim/lua/plugins-config/lualine.lua
+	mantablockscreen -i $2 &
 
 	# script that generates zathurarc
 	bash $HOME/.scripts/gendunstrc >> ~/.config/dunst/dunstrc
@@ -31,7 +35,7 @@ post_run () {
 
 	pkill dunst
 
-	notify-send -a 'Wally' 'Theme changed.' -t 1000
+	dunstify -a 'Wally' 'Theme changed.' -t 1000
 }
 
 case $choice in
@@ -39,20 +43,25 @@ case $choice in
 		WALLPAPER=$(sxiv -ot -N imagepicker $WALLPAPERS_DIR/*.jpg $WALLPAPERS_DIR/*.png $WALLPAPERS_DIR/*.jpeg $WALLPAPERS_DIR/*.webp)
 		feh --bg-fill $WALLPAPER 
 		cp $WALLPAPER ~/.cache/wal/wallpaper.jpg
+		mantablockscreen -i $1 &
+		dunstify -a 'Wally' 'Wallpaper changed.' -t 1000 -I $WALLPAPER
 		;;
 	$option2)
 		COLOR=$(ls $COLORSCHEMES_DIR | cut -d'.' -f1 | rofi -theme $THEME -i -dmenu -no-show-icons -no-sidebar-mode -lines 4 -width 30 -location 0 -yoffset 0 -fixed-num-lines true)
-		wal --theme $COLORSCHEMES_DIR/$COLOR.json
-		post_run $WALLPAPER
+		if [ "$COLOR" != "" ] ; then
+			wal --theme $COLORSCHEMES_DIR/$COLOR.json
+			post_run $COLOR $WALLPAPER
+		fi
 		;;
 	$option3)
 		WALLPAPER=$(sxiv -ot -N imagepicker $WALLPAPERS_DIR/*.jpg $WALLPAPERS_DIR/*.png $WALLPAPERS_DIR/*.jpeg $WALLPAPERS_DIR/*.webp)
 		feh --bg-fill $WALLPAPER 
 		wal -i $WALLPAPER
-		post_run $WALLPAPER
+		post_run pywal $WALLPAPER
+		dunstify -a 'Wally' 'Theme changed.' -t 1000 -I $WALLPAPER
 		;;
 	$option4)
-		notify-send -a 'Wally' 'Exited.' -t 1000
+		dunstify -a 'Wally' 'Exited.' -t 1000
 		exit ;;
 esac
 
