@@ -10,12 +10,11 @@
 
 THEME="$HOME/.config/rofi/themes/minimal_dialog.rasi"
 WALLPAPERS_DIR="$HOME/Wallpapers"
-COLORSCHEMES_DIR="$HOME/.config/wal/colorschemes/dark"
 
-option1="Set wallpaper"
-option2="Set colorscheme"
-option3="Generate colorscheme from image"
-option4="Exit"
+option1="  Set wallpaper"
+option2="  Set colorscheme"
+option3="  Generate colorscheme from image"
+option4="  Exit"
 
 options="$option1\n$option2\n$option3\n$option4"
 
@@ -23,10 +22,8 @@ choice=$(echo -e "$options" | rofi -theme $THEME -i -dmenu -no-show-icons -no-si
 
 post_run () {
 	xrdb $HOME/.Xresources
+	sed -i '/colorscheme/s/ .\+-.\/$1/' $HOME/.config/nvim/lua/colors/init.lua
 	genstarttree
-	sed -i "/colorscheme/s/ [Aa-Zz]\+/ $1/" $HOME/.config/nvim/lua/colors/init.lua
-	sed -i "/theme =/s/themes\[\"[Aa-Zz]\+\"\],/themes[\"$1\"\]," $HOME/.config/nvim/lua/plugins-config/lualine.lua
-	mantablockscreen -i $2 &
 
 	# script that generates zathurarc
 	bash $HOME/.scripts/gendunstrc >> ~/.config/dunst/dunstrc
@@ -43,14 +40,14 @@ case $choice in
 		WALLPAPER=$(sxiv -ot -N imagepicker $WALLPAPERS_DIR/*.jpg $WALLPAPERS_DIR/*.png $WALLPAPERS_DIR/*.jpeg $WALLPAPERS_DIR/*.webp)
 		feh --bg-fill $WALLPAPER 
 		cp $WALLPAPER ~/.cache/wal/wallpaper.jpg
-		mantablockscreen -i $1 &
+		mantablockscreen -i $WALLPAPER &
 		dunstify -a 'Wally' 'Wallpaper changed.' -t 1000 -I $WALLPAPER
 		;;
 	$option2)
-		COLOR=$(ls $COLORSCHEMES_DIR | cut -d'.' -f1 | rofi -theme $THEME -i -dmenu -no-show-icons -no-sidebar-mode -lines 4 -width 30 -location 0 -yoffset 0 -fixed-num-lines true)
+		COLOR=$(wal --theme | grep base16- | cut -d'-' -f3- | sort | uniq | rofi -i -dmenu -p ' ' -no-show-icons -no-sidebar-mode -lines 4 -width 30 -location 0 -yoffset 0 -fixed-num-lines true)
 		if [ "$COLOR" != "" ] ; then
-			wal --theme $COLORSCHEMES_DIR/$COLOR.json
-			post_run $COLOR $WALLPAPER
+			wal --theme base16-$COLOR
+			post_run base16-$COLOR $WALLPAPER
 		fi
 		;;
 	$option3)
@@ -58,6 +55,7 @@ case $choice in
 		feh --bg-fill $WALLPAPER 
 		wal -i $WALLPAPER
 		post_run pywal $WALLPAPER
+		mantablockscreen -i $WALLPAPER &
 		dunstify -a 'Wally' 'Theme changed.' -t 1000 -I $WALLPAPER
 		;;
 	$option4)

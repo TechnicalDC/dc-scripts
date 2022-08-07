@@ -12,10 +12,10 @@
 
 THEME="$HOME/.config/rofi/themes/minimal_dialog.rasi"
 
-option1=" Entire screen"
-option2=" Entire screen with delay"
-option3=" Focused window"
-option4=" Select area"
+option1="  Entire screen"
+option2="  Entire screen with delay"
+option3="  Focused window"
+option4="  Select area"
 
 options="$option1\n$option2\n$option3\n$option4"
 
@@ -45,5 +45,4 @@ case $choice in
 		scrot -u -b -e 'mv $f ~/Pictures/Scrot/' && notify-send -a 'Scrot' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;;
 	$option4)
 		scrot -s -e 'mv $f ~/Pictures/Scrot/' && notify-send -a 'Scrot' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;;
-
 esac

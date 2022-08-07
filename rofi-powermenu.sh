@@ -10,10 +10,10 @@
 
 THEME="$HOME/.config/rofi/themes/minimal_dialog.rasi"
 
-option1=" lock"
-option2=" logout"
-option3=" reboot"
-option4=" power off"
+option1="  lock"
+option2="  logout"
+option3="  reboot"
+option4="  power off"
 
 options="$option1\n"
 options="$options$option2\n"
