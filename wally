@@ -21,8 +21,9 @@ options="$option1\n$option2\n$option3\n$option4"
 choice=$(echo -e "$options" | rofi -theme $THEME -i -dmenu -no-show-icons -no-sidebar-mode -lines 4 -width 30 -p " " -location 0 -yoffset 0 -fixed-num-lines true) 
 
 post_run () {
+	echo $1
 	xrdb $HOME/.Xresources
-	sed -i '/colorscheme/s/ .\+-.\/$1/' $HOME/.config/nvim/lua/colors/init.lua
+	sed -i "s| .\+| "$1"]]|" $HOME/.config/nvim/lua/colors/init.lua
 	genstarttree
 
 	# script that generates zathurarc
@@ -44,10 +45,10 @@ case $choice in
 		dunstify -a 'Wally' 'Wallpaper changed.' -t 1000 -I $WALLPAPER
 		;;
 	$option2)
-		COLOR=$(wal --theme | grep base16- | cut -d'-' -f3- | sort | uniq | rofi -i -dmenu -p ' ' -no-show-icons -no-sidebar-mode -lines 4 -width 30 -location 0 -yoffset 0 -fixed-num-lines true)
+		COLOR=$(wal --theme | grep base16- | cut -d'-' -f2- | sort | uniq | rofi -i -dmenu -p ' ' -no-show-icons -no-sidebar-mode -lines 4 -width 30 -location 0 -yoffset 0 -fixed-num-lines true)
 		if [ "$COLOR" != "" ] ; then
-			wal --theme base16-$COLOR
-			post_run base16-$COLOR $WALLPAPER
+			wal --theme $COLOR
+			post_run $COLOR
 		fi
 		;;
 	$option3)
