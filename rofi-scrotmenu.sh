@@ -19,7 +19,7 @@ option4="  Select area"
 
 options="$option1\n$option2\n$option3\n$option4"
 
-choice=$(echo -e "$options" | rofi -theme $THEME -i -dmenu -no-show-icons -no-sidebar-mode -lines 4 -width 30 -p " " -location 0 -yoffset 0 -fixed-num-lines true) 
+choice=$(echo -e "$options" | rofi -theme $THEME -i -dmenu -no-show-icons -no-sidebar-mode -lines 4 -width 30 -p " ") 
 
 case $choice in
 	$option1)
@@ -29,7 +29,7 @@ case $choice in
 		delayoption2="Take screenshot with 5 sec delay"
 		delayoption3="Take screenshot with 10 sec delay"
 		delayoptions="$delayoption1\n$delayoption2\n$delayoption3"
-		delay=$(echo -e "$delayoptions" | rofi -theme $THEME -i -dmenu -no-show-icons -no-sidebar-mode -lines 3 -width 30 -p " " -location 0 -yoffset 0 -fixed-num-lines true) 
+		delay=$(echo -e "$delayoptions" | rofi -theme $THEME -i -dmenu -no-show-icons -no-sidebar-mode -lines 3 -width 30 -p " ") 
 
 		case $delay in
 
