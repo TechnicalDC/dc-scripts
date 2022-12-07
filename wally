@@ -8,7 +8,7 @@
 # Github: https://github.com/TechnicalDC/dc-scripts
 
 
-THEME="$HOME/.config/rofi/themes/minimal_dialog.rasi"
+THEME="$HOME/.config/rofi/themes/fancy.rasi"
 WALLPAPERS_DIR="$HOME/Wallpapers"
 
 option1="  Set wallpaper"

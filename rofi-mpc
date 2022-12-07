@@ -18,7 +18,7 @@ else:
 
 def run_rofi():
     commands = b"List\nPlay/Pause\nNext\nPrev\nRandom\nVolume 25%\nVolume 35%\nVolume 50%\nVolume 75%\nVolume 100%"
-    rofi = Popen(["rofi", "-selected-row", "1", "-mesg", current, "-i", "-dmenu", "-p", " "], stdout=PIPE, stdin=PIPE)
+    rofi = Popen(["rofi", "-selected-row", "1", "-mesg", current, "-i", "-dmenu", "-p", "  "], stdout=PIPE, stdin=PIPE)
     tmp = rofi.communicate(input=commands)[0].decode().rstrip()
     if tmp == "Play/Pause":
             check_call(["mpc", "toggle"])

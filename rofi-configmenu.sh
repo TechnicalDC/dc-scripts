@@ -61,7 +61,7 @@ options[zsh]="$HOME/.zshrc"
 
 # Piping the above array into dmenu.
 # We use "printf '%s\n'" to format the array one item to a line.
-choice=$(printf '%s\n' "${!options[@]}" | rofi -dmenu -i -no-show-icons -no-sidebar-mode -line 10  -p " ") 
+choice=$(printf '%s\n' "${!options[@]}" | rofi -dmenu -i -no-show-icons -no-sidebar-mode -line 10  -p "  ") 
 
 # What to do when/if we choose a file to edit.
 if [ "$choice" ]; then
