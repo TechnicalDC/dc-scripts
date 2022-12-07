@@ -11,6 +11,8 @@ Various shell scripts for rofi
 * **wal-telegram:** script for generating telegram theme based on pywal
 
 ## Screenshots
+Wally <br>
+![wally](https://github.com/TechnicalDC/rofi-scripts/blob/main/images/wally.png)
 
 Config menu <br>
 ![config menu](https://github.com/TechnicalDC/rofi-scripts/blob/main/images/rofi-configmenu.png)
