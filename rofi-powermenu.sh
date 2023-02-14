@@ -19,7 +19,7 @@ options="$option1\n"
 options="$options$option2\n"
 options="$options$option3\n$option4"
 
-choice=$(echo -e "$options" | rofi -dmenu -theme $THEME -i -no-show-icons -lines 4 -width 30 -p " $(uptime -p) ") 
+choice=$(echo -e "$options" | rofi -dmenu -theme $THEME -i -no-show-icons -lines 4 -width 30 -p "  " -mesg " $(uptime -p) ") 
 
 case $choice in
 	$option1)

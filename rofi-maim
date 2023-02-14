@@ -1,0 +1,46 @@
+#!/bin/bash
+
+#			 			  __                              
+# .-----.----.----.-----.|  |_.--------.-----.-----.--.--.
+# |__ --|  __|   _|  _  ||   _|        |  -__|     |  |  |
+# |_____|____|__| |_____||____|__|__|__|_____|__|__|_____|
+   
+# Author: Dilip Chauhan
+# Github: https://github/TechnicalDC
+
+# This script requires scrot
+
+THEME="$HOME/.config/rofi/themes/fancy_min.rasi"
+DIR="$HOME/Pictures/screenshots/"
+NAME="maim_$(date +%d%m%Y_%H%M%S).png"
+
+option1="  Entire screen"
+option2="  Entire screen with delay"
+option3="  Selection"
+
+options="$option1\n$option2\n$option3"
+
+choice=$(echo -e "$options" | rofi -mesg "Current: $DIR" -theme $THEME -i -dmenu -no-show-icons -no-sidebar-mode -lines 4 -width 30 -p "  ") 
+
+case $choice in
+	$option1)
+		maim $DIR$NAME && notify-send -a 'Scrot' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;; 
+	$option2)
+		delayoption1="Take screenshot with 3 sec delay"
+		delayoption2="Take screenshot with 5 sec delay"
+		delayoption3="Take screenshot with 10 sec delay"
+		delayoptions="$delayoption1\n$delayoption2\n$delayoption3"
+		delay=$(echo -e "$delayoptions" | rofi -theme $THEME -i -dmenu -no-show-icons -no-sidebar-mode -lines 3 -width 30 -p "  ") 
+
+		case $delay in
+			$delayoption1)
+				maim -d 3 $DIR$NAME && notify-send -a 'Scrot' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;; 
+			$delayoption2)
+				maim -d 5 $DIR$NAME && notify-send -a 'Scrot' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;; 
+			$delayoption3)
+				maim -d 10 $DIR$NAME && notify-send -a 'Scrot' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;; 
+		esac ;;
+
+	$option3)
+		maim -s $DIR$NAME && notify-send -a 'Scrot' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;;
+esac

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Generates zathura configuration file
+
+. $HOME/.cache/wal/colors.sh
+
+cat <<CONF

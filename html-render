@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+# render html as markdown and display in glow, supports syntax highlighting
+# requires: pandoc, html2text, glow
+# author: CEUK
+pandoc -t gfm $1 | sed 's/<\/\?div>//' > /tmp/mutt.md 
+glow -s ~/.config/glow/style.json /tmp/mutt.md -w 70
