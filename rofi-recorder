@@ -70,7 +70,11 @@ option3="  Audio"
 option4="  Stop recording"
 option5="󰗼  Exit"
 
-options="$option1\n$option2\n$option3\n$option4\n$option5"
+if [ ! -f /tmp/recordingpid ] ; then
+	options="$option1\n$option2\n$option3\n$option5"
+else
+	options="$option4\n$option5"
+fi
 
 choice=$(echo -e "$options" | rofi -theme $THEME -i -dmenu -no-show-icons -no-sidebar-mode -lines 4 -width 30 -p "  ") 
 

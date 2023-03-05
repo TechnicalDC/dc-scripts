@@ -4,6 +4,9 @@ from pathlib import Path
 from os import listdir
 from os.path import isfile, join
 import sys
+
+rofi_theme = "/home/dilip/.config/rofi/themes/fancy.rasi"
+
 def getCurrent():
 	return check_output(["mpc", "current"]);
 
@@ -18,7 +21,7 @@ else:
 
 def run_rofi():
     commands = b"List\nPlay/Pause\nNext\nPrev\nRandom\nVolume 25%\nVolume 35%\nVolume 50%\nVolume 75%\nVolume 100%"
-    rofi = Popen(["rofi", "-selected-row", "1", "-mesg", current, "-i", "-dmenu", "-p", "  "], stdout=PIPE, stdin=PIPE)
+    rofi = Popen(["rofi", "-theme", rofi_theme, "-no-sidebar-mode", "-selected-row", "1", "-mesg", current, "-i", "-dmenu", "-p", "  "], stdout=PIPE, stdin=PIPE)
     tmp = rofi.communicate(input=commands)[0].decode().rstrip()
     if tmp == "Play/Pause":
             check_call(["mpc", "toggle"])
