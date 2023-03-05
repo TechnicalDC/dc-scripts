@@ -17,7 +17,7 @@ Various shell scripts for rofi
 ![power menu](https://github.com/TechnicalDC/rofi-scripts/blob/main/images/rofi-powermenu.png)
 
 * rofi-maim
-![maim menu](https://github.com/TechnicalDC/rofi-scripts/blob/main/images/rofi-scrotmenu.png)
+![maim menu](https://github.com/TechnicalDC/rofi-scripts/blob/main/images/rofi-maim.png)
 
 * rofi-quickmarks
 ![quickmarks menu](https://github.com/TechnicalDC/rofi-scripts/blob/main/images/rofi-quickmarks.png)
