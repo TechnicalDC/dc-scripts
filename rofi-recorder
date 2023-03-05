@@ -1,0 +1,83 @@
+#!/bin/sh
+
+# Github: https://github.com/TechnicalDC/dc-scripts
+
+THEME="$HOME/.config/rofi/themes/fancy_min.rasi"
+DIR="$HOME/Recordings"
+
+check_dir () {
+	if [ ! -d "$DIR" ]; then
+		mkdir $DIR
+	else 
+		echo "$DIR already exists"
+	fi
+}
+
+getdim() { xrandr | sed -n "s/\s*\([0-9]\+x[0-9]\+\).*\*.*/\1/p" ;}
+
+updateicon() { \
+	echo "$1" > /tmp/recordingicon
+	pkill -RTMIN+9 "${STATUSBAR:-dwmblocks}"
+}
+
+killrecording() {
+	recpid="$(cat /tmp/recordingpid)"
+	kill -15 "$recpid"
+	rm -f /tmp/recordingpid
+	updateicon ""
+	pkill -RTMIN+9 "${STATUSBAR:-dwmblocks}"
+}
+
+screencast() { \
+	ffmpeg -y \
+	-f x11grab \
+	-framerate 30 \
+	-s "$(getdim)" \
+	-i "$DISPLAY" \
+	-r 24 \
+	-use_wallclock_as_timestamps 1 \
+	-f alsa -thread_queue_size 1024 -i default \
+	-c:v h264 \
+	-crf 0 -preset ultrafast -c:a aac \
+	"$DIR/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
+	echo $! > /tmp/recordingpid
+	updateicon "⏺️🎙️"
+}
+
+video() { ffmpeg \
+	-f x11grab \
+	-framerate 30 \
+	-s "$(getdim)" \
+	-i "$display" \
+	-c:v libx264 -qp 0 -r 30 \
+	"$DIR/video-$(date '+%y%m%d-%h%m-%s').mkv" &
+	echo $! > /tmp/recordingpid
+	updateicon "⏺️"
+}
+
+audio() { \
+	ffmpeg \
+	-f alsa -i default \
+	-c:a flac \
+	"$DIR/audio-$(date '+%y%m%d-%H%M-%S').flac" &
+	echo $! > /tmp/recordingpid
+	updateicon "🎙️"
+}
+
+option1="󰄘  Screencast"
+option2="  Video"
+option3="  Audio"
+option4="  Stop recording"
+option5="󰗼  Exit"
+
+options="$option1\n$option2\n$option3\n$option4\n$option5"
+
+choice=$(echo -e "$options" | rofi -theme $THEME -i -dmenu -no-show-icons -no-sidebar-mode -lines 4 -width 30 -p "  ") 
+
+case $choice in
+	$option1) screencast ;;
+	$option2) video ;;
+	$option3) audio ;;
+	$option4) killrecording ;;
+	*) exit ;;
+esac
