@@ -10,6 +10,10 @@ Various shell scripts for rofi
 * **genzathurarc:** script for generating zathurarc with pywal colorscheme
 
 ## Screenshots
+
+* rofi-tmux
+![rofi-tmux](https://github.com/TechnicalDC/rofi-scripts/blob/main/images/rofi-tmux.png)
+
 * rofi-configmenu
 ![config menu](https://github.com/TechnicalDC/rofi-scripts/blob/main/images/rofi-configmenu.png)
 
