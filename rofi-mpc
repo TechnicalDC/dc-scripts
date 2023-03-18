@@ -6,12 +6,13 @@ from os.path import isfile, join
 import sys
 
 rofi_theme = "/home/dilip/.config/rofi/themes/fancy.rasi"
+host = "127.0.0.1"
 
 def getCurrent():
-	return check_output(["mpc", "current"]);
+	return check_output(["mpc","-h",host, "current"]);
 
 def getState():
-    return check_output(["mpc", "status", "%state%"])
+    return check_output(["mpc", "-h", host, "status", "%state%"])
 
 current = getCurrent().decode()
 if not current:
@@ -21,28 +22,28 @@ else:
 
 def run_rofi():
     commands = b"List\nPlay/Pause\nNext\nPrev\nRandom\nVolume 25%\nVolume 35%\nVolume 50%\nVolume 75%\nVolume 100%"
-    rofi = Popen(["rofi", "-theme", rofi_theme, "-no-sidebar-mode", "-selected-row", "1", "-mesg", current, "-i", "-dmenu", "-p", "  "], stdout=PIPE, stdin=PIPE)
+    rofi = Popen(["rofi", "-theme", rofi_theme, "-no-sidebar-mode", "-no-show-icons", "-selected-row", "1", "-mesg", current, "-i", "-dmenu", "-p", "  "], stdout=PIPE, stdin=PIPE)
     tmp = rofi.communicate(input=commands)[0].decode().rstrip()
     if tmp == "Play/Pause":
-            check_call(["mpc", "toggle"])
+            check_call(["mpc", "-h", host, "toggle"])
     if tmp == "Next":
-            check_call(["mpc", "next"])
+            check_call(["mpc", "-h", host, "next"])
     if tmp == "Prev":
-            check_call(["mpc", "prev"])
+            check_call(["mpc", "-h", host, "prev"])
     if tmp == "Random":
-            check_call(["mpc", "random"])
+            check_call(["mpc", "-h", host, "random"])
     if tmp == "Volume 25%":
-            check_call(["mpc", "volume", "25"])
+            check_call(["mpc", "-h", host, "volume", "25"])
     if tmp == "Volume 35%":
-            check_call(["mpc", "volume", "35"])
+            check_call(["mpc", "-h", host, "volume", "35"])
     if tmp == "Volume 50%":
-            check_call(["mpc", "volume", "50"])
+            check_call(["mpc", "-h", host, "volume", "50"])
     if tmp == "Volume 75%":
-            check_call(["mpc", "volume", "75"])
+            check_call(["mpc", "-h", host, "volume", "75"])
     if tmp == "Volume 100%":
-            check_call(["mpc", "volume", "100"])
+            check_call(["mpc", "-h", host, "volume", "100"])
     if tmp == "List":
-            titles = check_output(["mpc", "playlist"])
+            titles = check_output(["mpc", "-h", host, "playlist"])
             track = 0
             tlist = ""
             for line in titles.splitlines():
@@ -52,7 +53,7 @@ def run_rofi():
                     tlist.rstrip()
                     tlist = "[SOURCES]\n" + tlist
                     tlist = "[BACK]\n" + tlist
-                    rofi = Popen(["rofi", "-selected-row", "1", "-i", "-dmenu", "-p", " "], stdout=PIPE, stdin=PIPE)
+                    rofi = Popen(["rofi", "-selected-row", "1", "-i", "-dmenu", "-no-show-icons", "-p", " "], stdout=PIPE, stdin=PIPE)
                     tmp = rofi.communicate(input=tlist.encode())[0].decode().rstrip()
                     tmp = tmp[tmp.find("[")+1:tmp.find("]")]
             else:
@@ -61,28 +62,28 @@ def run_rofi():
                     sys.exit(0)
             if tmp == "SOURCES":
                     commands = "Local ~/Music\n"
-                    playlists = check_output(["mpc", "lsplaylists"])
+                    playlists = check_output(["mpc", "-h", host, "lsplaylists"])
                     for line in playlists.splitlines():
                             commands = commands + line.decode() + "\n"
-                    rofi = Popen(["rofi", "-mesg", current, "-i", "-dmenu", "-p", "Select Source: "], stdout=PIPE, stdin=PIPE)
+                    rofi = Popen(["rofi", "-mesg", current, "-i", "-dmenu", "-no-show-icons", "-p", "Select Source: "], stdout=PIPE, stdin=PIPE)
                     tmp = rofi.communicate(input=commands.encode())[0].decode().rstrip()
                     if not tmp:
                             sys.exit(0)	
                     elif tmp == "Local ~/Music":
-                            check_call(["mpc", "clear"])
-                            check_call(["mpc", "update"])
-                            files = check_output(["mpc", "listall"])
-                            add = Popen(["mpc", "add"], stdin=PIPE)
+                            check_call(["mpc", "-h", host, "clear"])
+                            check_call(["mpc", "-h", host, "update"])
+                            files = check_output(["mpc", "-h", host, "listall"])
+                            add = Popen(["mpc", "-h", host, "add"], stdin=PIPE)
                             add.communicate(files)
-                            Popen(["mpc", "play"])
+                            Popen(["mpc", "-h", host, "play"])
                     else:
-                            check_call(["mpc", "clear"])
-                            check_call(["mpc", "load", tmp])
-                            check_call(["mpc", "play"])
+                            check_call(["mpc", "-h", host, "clear"])
+                            check_call(["mpc", "-h", host, "load", tmp])
+                            check_call(["mpc", "-h", host, "play"])
             elif tmp == "BACK":
                 run_rofi()
 
             else:
-                    check_call(["mpc", "play", tmp])
+                    check_call(["mpc", "-h", host, "play", tmp])
 
 run_rofi()
