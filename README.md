@@ -1,13 +1,13 @@
 # rofi-scripts
 Various shell scripts for rofi
 
-* **rofi-powermenu.sh:** menu for shutdown, reboot, lock, logout
-* **rofi-maim:** menu for taking screenshots 
-* **rofi-configmenu.sh:** menu opening configuration files
-* **rofi-quickmarks.sh:** menu for opening quickmarks in qutebrowser
-* **rofi-mpc:** script from [Marco98](https://github.com/Marco98/rofi-mpc) with my few tweaks
-* **rofi-recorder:** script from [LukeSmithxyz](https://github.com/LukeSmithxyz/voidrice/blob/master/.local/bin/dmenurecord) with rofi as menu
-* **genzathurarc:** script for generating zathurarc with pywal colorscheme
+* **rofi-powermenu.sh:** for for shutdown, reboot, lock, logout
+* **rofi-maim:** for taking screenshots 
+* **rofi-configmenu.sh:** for opening configuration files
+* **rofi-quickmarks.sh:** for opening quickmarks in qutebrowser
+* **rofi-mpc:** for controlling mpd using rofi and mpc
+* **rofi-recorder:** for screen, audio and video recording using ffmpeg
+* **rofi-tmux:** for managing tmux sessions using rofi
 
 ## Screenshots
 
@@ -31,3 +31,9 @@ Various shell scripts for rofi
 
 * rofi-recorder
 ![rofi-recorder](https://github.com/TechnicalDC/rofi-scripts/blob/main/images/rofi-recorder.png)
+
+## Credits
+> Few scripts here is modified version of scripts from below authors
+* [Marco98](https://github.com/Marco98/rofi-mpc) for mpc script
+* [LukeSmithxyz](https://github.com/LukeSmithxyz/voidrice/blob/master/.local/bin/dmenurecord) for screen recording script
+* [davatorium](https://github.com/davatorium/rofi-scripts) for tmux session script
