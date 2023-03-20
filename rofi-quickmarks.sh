@@ -15,7 +15,7 @@
 ROFI_THEME=$HOME/.config/rofi/themes/fancy.rasi
 
 file="$HOME/.config/qutebrowser/quickmarks"
-url=$(cat ~/.config/qutebrowser/quickmarks | cut -d' ' -f'2' | rofi -theme $ROFI_THEME -dmenu -i -p '  ')
+url=$(cat ~/.config/qutebrowser/quickmarks | cut -d' ' -f'2' | rofi -theme $ROFI_THEME -dmenu -i -p '  ' -no-show-icons)
 if [ ! -v ${url} ]; then
 	if grep -q $url "$file"; then
 		qutebrowser --target window $url
