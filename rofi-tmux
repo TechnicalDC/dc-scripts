@@ -26,6 +26,7 @@ elif [[ "$DELETE" = "$TMUX_SESSION" ]]; then
 	tmux kill-session
 elif [[ "$QUIT" = "$TMUX_SESSION" ]]; then
 	exit
-else
-	rofi-sensible-terminal -e tmux attach -t "${TMUX_SESSION}" &
+elif [[ "$TMUX_SESSION" != "" ]] ; then
+	SESSION=$(echo $TMUX_SESSION | cut -d\  -f1)
+	rofi-sensible-terminal -e tmux attach -t "${SESSION}" &
 fi

@@ -8,6 +8,7 @@ Various shell scripts for rofi
 * **rofi-mpc:** for controlling mpd using rofi and mpc
 * **rofi-recorder:** for screen, audio and video recording using ffmpeg
 * **rofi-tmux:** for managing tmux sessions using rofi
+* **rofi-bluetooth:** for managing bluetooth devices
 
 ## Screenshots
 
@@ -37,3 +38,4 @@ Various shell scripts for rofi
 * [Marco98](https://github.com/Marco98/rofi-mpc) for mpc script
 * [LukeSmithxyz](https://github.com/LukeSmithxyz/voidrice/blob/master/.local/bin/dmenurecord) for screen recording script
 * [davatorium](https://github.com/davatorium/rofi-scripts) for tmux session script
+* [nickclyde](https://github.com/nickclyde/rofi-bluetooth) for bluetooth script
