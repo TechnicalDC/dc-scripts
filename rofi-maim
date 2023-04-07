@@ -25,7 +25,7 @@ choice=$(echo -e "$options" | rofi -mesg "Current: $DIR" -theme $THEME -i -dmenu
 
 case $choice in
 	$option1)
-		maim $DIR$NAME && notify-send -a 'Scrot' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;; 
+		maim -u $DIR$NAME && notify-send -a 'Maim' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;; 
 	$option2)
 		delayoption1="Take screenshot with 3 sec delay"
 		delayoption2="Take screenshot with 5 sec delay"
@@ -35,13 +35,13 @@ case $choice in
 
 		case $delay in
 			$delayoption1)
-				maim -d 3 $DIR$NAME && notify-send -a 'Scrot' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;; 
+				maim -u -d 3 $DIR$NAME && notify-send -a 'Maim' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;; 
 			$delayoption2)
-				maim -d 5 $DIR$NAME && notify-send -a 'Scrot' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;; 
+				maim -u -d 5 $DIR$NAME && notify-send -a 'Maim' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;; 
 			$delayoption3)
-				maim -d 10 $DIR$NAME && notify-send -a 'Scrot' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;; 
+				maim -u -d 10 $DIR$NAME && notify-send -a 'Maim' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;; 
 		esac ;;
 
 	$option3)
-		maim -s $DIR$NAME && notify-send -a 'Scrot' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;;
+		maim -s $DIR$NAME && notify-send -a 'Maim' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;;
 esac
