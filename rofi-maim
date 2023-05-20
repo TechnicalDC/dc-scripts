@@ -11,7 +11,6 @@
 
 # This script requires scrot
 
-THEME="$HOME/.config/rofi/themes/fancy_min.rasi"
 DIR="$HOME/Pictures/screenshots/"
 NAME="maim_$(date +%d%m%Y_%H%M%S).png"
 
@@ -21,7 +20,7 @@ option3="  Selection"
 
 options="$option1\n$option2\n$option3"
 
-choice=$(echo -e "$options" | rofi -mesg "Current: $DIR" -theme $THEME -i -dmenu -no-show-icons -no-sidebar-mode -lines 4 -width 30 -p "  ") 
+choice=$(echo -e "$options" | rofi -mesg "Current: $DIR" -theme $ROFI_MINI -i -dmenu -no-show-icons -no-sidebar-mode -lines 4 -width 30 -p "  ") 
 
 case $choice in
 	$option1)
@@ -31,7 +30,7 @@ case $choice in
 		delayoption2="Take screenshot with 5 sec delay"
 		delayoption3="Take screenshot with 10 sec delay"
 		delayoptions="$delayoption1\n$delayoption2\n$delayoption3"
-		delay=$(echo -e "$delayoptions" | rofi -theme $THEME -i -dmenu -no-show-icons -no-sidebar-mode -lines 3 -width 30 -p "  ") 
+		delay=$(echo -e "$delayoptions" | rofi -theme $ROFI_MINI -i -dmenu -no-show-icons -no-sidebar-mode -lines 3 -width 30 -p "  ") 
 
 		case $delay in
 			$delayoption1)

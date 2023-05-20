@@ -8,7 +8,6 @@
 
 # Github: https://github.com/TechnicalDC/dc-scripts
 
-THEME="$HOME/.config/rofi/themes/fancy_min.rasi"
 DIR="$HOME/Recordings"
 
 check_dir () {
@@ -82,7 +81,7 @@ else
 	options="$option4\n$option5"
 fi
 
-choice=$(echo -e "$options" | rofi -theme $THEME -i -dmenu -no-show-icons -no-sidebar-mode -lines 4 -width 30 -p "  ") 
+choice=$(echo -e "$options" | rofi -theme $ROFI_MINI -i -dmenu -no-show-icons -no-sidebar-mode -lines 4 -width 30 -p "  ") 
 
 case $choice in
 	$option1) screencast ;;

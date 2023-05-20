@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 from subprocess import Popen, PIPE, STDOUT, check_output, check_call
 from pathlib import Path
-from os import listdir
+from os import listdir, getenv
 from os.path import isfile, join
 import sys
 
-rofi_theme = "/home/dilip/.config/rofi/themes/fancy.rasi"
+rofi_theme = "/home/dilip/.config/rofi/themes/minimal/list.rasi"
 host = "127.0.0.1"
 
 def getCurrent():

@@ -1,5 +1,5 @@
 #!/bin/bash
-                                                            
+
 # .-----.-----.--.--.--.-----.----.--------.-----.-----.--.--.
 # |  _  |  _  |  |  |  |  -__|   _|        |  -__|     |  |  |
 # |   __|_____|________|_____|__| |__|__|__|_____|__|__|_____|
@@ -7,8 +7,6 @@
 
 # Author: Dilip Chauhan
 # Github: https://github/TechnicalDC
-
-THEME="$HOME/.config/rofi/themes/fancy_min.rasi"
 
 option1="  lock"
 option2="  logout"
@@ -19,7 +17,7 @@ options="$option1\n"
 options="$options$option2\n"
 options="$options$option3\n$option4"
 
-choice=$(echo -e "$options" | rofi -dmenu -theme $THEME -i -no-show-icons -lines 4 -width 30 -p "  " -mesg " $(uptime -p) ") 
+choice=$(echo -e "$options" | rofi -dmenu -theme $ROFI_MINI -i -no-show-icons -lines 4 -width 30 -p "  " -mesg " $(uptime -p) ") 
 
 case $choice in
 	$option1)
