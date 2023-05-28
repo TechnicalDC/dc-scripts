@@ -12,7 +12,6 @@
 # Replace nvim with the editor of your choice
 
 MYEDITOR="st -e nvim"
-ROFI_THEME=$HOME/.config/rofi/themes/fancy.rasi
 
 declare -A options
 options[Aliases]="$HOME/.aliases"
@@ -52,7 +51,7 @@ options[Zsh]="$HOME/.config/zsh/.zshrc"
 
 # Piping the above array into dmenu.
 # We use "printf '%s\n'" to format the array one item to a line.
-choice=$(printf '%s\n' "${!options[@]}" | rofi -theme $ROFI_THEME -dmenu -i -no-show-icons -no-sidebar-mode -line 10  -p "  ") 
+choice=$(printf '%s\n' "${!options[@]}" | rofi -theme $ROFI_LIST -dmenu -i -no-show-icons -no-sidebar-mode -line 10  -p "  ") 
 
 # What to do when/if we choose a file to edit.
 if [ "$choice" ]; then
