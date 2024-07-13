@@ -1,9 +1,9 @@
 #!/bin/bash
 
-#             __ _   _                        
+#             __ _   _
 #  _ __ ___  / _(_) | |_ _ __ ___  _   ___  __
 # | '__/ _ \| |_| | | __| '_ ` _ \| | | \ \/ /
-# | | | (_) |  _| | | |_| | | | | | |_| |>  < 
+# | | | (_) |  _| | | |_| | | | | | |_| |>  <
 # |_|  \___/|_| |_|  \__|_| |_| |_|\__,_/_/\_\
 
 # Github: https://github.com/TechnicalDC/dc-scripts
@@ -18,7 +18,7 @@ ADD="  Add new session"
 DELETE="󰆴  Delete a session"
 QUIT="󰗼  Quit"
 
-TMUX_SESSION=$( (printf "%s\n" "$ADD" "$DELETE" "$QUIT"; tmux_sessions) | rofi -theme $ROFI_MINI -dmenu -p "  " -no-show-icons)
+TMUX_SESSION=$( (printf "%s\n" "$ADD" "$DELETE" "$QUIT"; tmux_sessions) | rofi -theme ~/.config/rofi/themes/catppuccin-macchiato.rasi -dmenu -p "  " -no-show-icons)
 
 if [[ "$ADD" = "$TMUX_SESSION" ]]; then
 	rofi-sensible-terminal -e tmux new-session &
