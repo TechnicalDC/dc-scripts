@@ -21,7 +21,7 @@ choice=$(echo -e "$options" | rofi -dmenu -theme ~/.config/rofi/themes/catppucci
 
 case $choice in
 	$option1)
-		mantablockscreen -cc ;;
+	   hyprlock ;;
 	$option2)
 		bspc quit || i3-msg exit || herbstclient quit || hyprctl dispatch exit ;;
 	$option3)
