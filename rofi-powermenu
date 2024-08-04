@@ -19,23 +19,23 @@ options="$options$option3\n$option4"
 yes=" Ok"
 no="󰜺 Cancel"
 
-choice=$(echo -e "$options" | rofi -dmenu -theme ~/.config/rofi/themes/catppuccin-macchiato-powermenu.rasi -i -no-show-icons -lines 4)
+choice=$(echo -e "$options" | rofi -dmenu -p ' Power ' -theme ~/.config/rofi/themes/catppuccin-macchiato-powermenu.rasi -i -no-show-icons -lines 4 -mesg "$(uptime -p)")
 
 case $choice in
 	$option1)
 	   hyprlock ;;
 	$option2)
-      choice=$(echo "$yes|$no" | rofi -dmenu -sep "|" -theme ~/.config/rofi/themes/catppuccin-macchiato-dialog.rasi -mesg "Are you sure?")
+      choice=$(echo "$yes|$no" | rofi -dmenu -sep "|" -theme ~/.config/rofi/themes/catppuccin-macchiato-dialog.rasi -p "Are you sure?")
       if [[ $choice == $yes ]]; then
          bspc quit || i3-msg exit || herbstclient quit || hyprctl dispatch exit
       fi ;;
 	$option3)
-      choice=$(echo "$yes|$no" | rofi -dmenu -sep "|" -theme ~/.config/rofi/themes/catppuccin-macchiato-dialog.rasi -mesg "Are you sure?")
+      choice=$(echo "$yes|$no" | rofi -dmenu -sep "|" -theme ~/.config/rofi/themes/catppuccin-macchiato-dialog.rasi -p "Are you sure?")
       if [[ $choice == $yes ]]; then
          systemctl reboot
       fi ;;
 	$option4)
-      choice=$(echo "$yes|$no" | rofi -dmenu -sep "|" -theme ~/.config/rofi/themes/catppuccin-macchiato-dialog.rasi -mesg "Are you sure?")
+      choice=$(echo "$yes|$no" | rofi -dmenu -sep "|" -theme ~/.config/rofi/themes/catppuccin-macchiato-dialog.rasi -p "Are you sure?")
       if [[ $choice == $yes ]]; then
          systemctl poweroff
       fi ;;

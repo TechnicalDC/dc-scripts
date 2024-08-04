@@ -36,7 +36,7 @@ fi
 
 options="$option1\n$option2\n$option3"
 
-choice=$(echo -e "$options" | rofi -theme ~/.config/rofi/themes/catppuccin-macchiato-screenshot.rasi -i -dmenu -no-show-icons -no-sidebar-mode -columns 4 -width 30 -p "  ")
+choice=$(echo -e "$options" | rofi -theme ~/.config/rofi/themes/catppuccin-macchiato-screenshot.rasi -i -dmenu -no-show-icons -no-sidebar-mode -columns 4 -width 30 -p " Screenshot " -mesg "$DIR")
 
 case $choice in
    $option1)

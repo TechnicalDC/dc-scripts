@@ -5,7 +5,7 @@ from os import listdir, getenv
 from os.path import isfile, join
 import sys
 
-rofi_theme = "/home/dilip/.config/rofi/themes/minimal/list.rasi"
+rofi_theme = "/home/dilip/.config/rofi/themes/catppuccin-macchiato-launcher.rasi"
 host = "127.0.0.1"
 
 def getCurrent():
@@ -68,7 +68,7 @@ def run_rofi():
                     rofi = Popen(["rofi", "-mesg", current, "-i", "-dmenu", "-no-show-icons", "-p", "Select Source: "], stdout=PIPE, stdin=PIPE)
                     tmp = rofi.communicate(input=commands.encode())[0].decode().rstrip()
                     if not tmp:
-                            sys.exit(0)	
+                            sys.exit(0)
                     elif tmp == "Local ~/Music":
                             check_call(["mpc", "-h", host, "clear"])
                             check_call(["mpc", "-h", host, "update"])
