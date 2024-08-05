@@ -1,89 +1,106 @@
-#!/usr/bin/env python3
-from subprocess import Popen, PIPE, STDOUT, check_output, check_call
-from pathlib import Path
-from os import listdir, getenv
-from os.path import isfile, join
-import sys
+#!/usr/bin/env bash
 
-rofi_theme = "/home/dilip/.config/rofi/themes/catppuccin-macchiato-launcher.rasi"
-host = "127.0.0.1"
+## Author  : Aditya Shakya (adi1090x)
+## Github  : @adi1090x
+#
+## Applets : MPD (music)
 
-def getCurrent():
-	return check_output(["mpc","-h",host, "current"]);
+# Import Current Theme
+theme="$HOME/.config/rofi/themes/catppuccin-macchiato-mpc.rasi"
 
-def getState():
-    return check_output(["mpc", "-h", host, "status", "%state%"])
+# Theme Elements
+status="`mpc status`"
+if [[ -z "$status" ]]; then
+	prompt='Offline'
+	mesg="MPD is Offline"
+else
+	prompt="`mpc -f "%artist%" current`"
+	mesg="`mpc -f "%title%" current` :: `mpc status | grep "#" | awk '{print $3}'`"
+fi
 
-current = getCurrent().decode()
-if not current:
-	current = "Nothing is currently Playing"
-else:
-    current = "Currently " + getState().decode().rstrip() + ": " +current.rstrip()
+# Options
+if [[ ${status} == *"[playing]"* ]]; then
+   option_1=""
+else
+   option_1=""
+fi
+option_2=""
+option_3=""
+option_4=""
+option_5=""
+option_6=""
 
-def run_rofi():
-    commands = b"List\nPlay/Pause\nNext\nPrev\nRandom\nVolume 25%\nVolume 35%\nVolume 50%\nVolume 75%\nVolume 100%"
-    rofi = Popen(["rofi", "-theme", rofi_theme, "-no-sidebar-mode", "-no-show-icons", "-selected-row", "1", "-mesg", current, "-i", "-dmenu", "-p", "  "], stdout=PIPE, stdin=PIPE)
-    tmp = rofi.communicate(input=commands)[0].decode().rstrip()
-    if tmp == "Play/Pause":
-            check_call(["mpc", "-h", host, "toggle"])
-    if tmp == "Next":
-            check_call(["mpc", "-h", host, "next"])
-    if tmp == "Prev":
-            check_call(["mpc", "-h", host, "prev"])
-    if tmp == "Random":
-            check_call(["mpc", "-h", host, "random"])
-    if tmp == "Volume 25%":
-            check_call(["mpc", "-h", host, "volume", "25"])
-    if tmp == "Volume 35%":
-            check_call(["mpc", "-h", host, "volume", "35"])
-    if tmp == "Volume 50%":
-            check_call(["mpc", "-h", host, "volume", "50"])
-    if tmp == "Volume 75%":
-            check_call(["mpc", "-h", host, "volume", "75"])
-    if tmp == "Volume 100%":
-            check_call(["mpc", "-h", host, "volume", "100"])
-    if tmp == "List":
-            titles = check_output(["mpc", "-h", host, "playlist"])
-            track = 0
-            tlist = ""
-            for line in titles.splitlines():
-                    track += 1
-                    tlist = tlist + "[" + str(track) + "] " + line.decode() + "\n"
-            if track > 2:
-                    tlist.rstrip()
-                    tlist = "[SOURCES]\n" + tlist
-                    tlist = "[BACK]\n" + tlist
-                    rofi = Popen(["rofi", "-selected-row", "1", "-i", "-dmenu", "-no-show-icons", "-p", " "], stdout=PIPE, stdin=PIPE)
-                    tmp = rofi.communicate(input=tlist.encode())[0].decode().rstrip()
-                    tmp = tmp[tmp.find("[")+1:tmp.find("]")]
-            else:
-                    tmp = "SOURCES"
-            if not tmp:
-                    sys.exit(0)
-            if tmp == "SOURCES":
-                    commands = "Local ~/Music\n"
-                    playlists = check_output(["mpc", "-h", host, "lsplaylists"])
-                    for line in playlists.splitlines():
-                            commands = commands + line.decode() + "\n"
-                    rofi = Popen(["rofi", "-mesg", current, "-i", "-dmenu", "-no-show-icons", "-p", "Select Source: "], stdout=PIPE, stdin=PIPE)
-                    tmp = rofi.communicate(input=commands.encode())[0].decode().rstrip()
-                    if not tmp:
-                            sys.exit(0)
-                    elif tmp == "Local ~/Music":
-                            check_call(["mpc", "-h", host, "clear"])
-                            check_call(["mpc", "-h", host, "update"])
-                            files = check_output(["mpc", "-h", host, "listall"])
-                            add = Popen(["mpc", "-h", host, "add"], stdin=PIPE)
-                            add.communicate(files)
-                            Popen(["mpc", "-h", host, "play"])
-                    else:
-                            check_call(["mpc", "-h", host, "clear"])
-                            check_call(["mpc", "-h", host, "load", tmp])
-                            check_call(["mpc", "-h", host, "play"])
-            elif tmp == "BACK":
-                run_rofi()
+# Toggle Actions
+active=''
+urgent=''
+# Repeat
+if [[ ${status} == *"repeat: on"* ]]; then
+    active="-a 4"
+elif [[ ${status} == *"repeat: off"* ]]; then
+    urgent="-u 4"
+else
+    option_5=" Parsing Error"
+fi
+# Random
+if [[ ${status} == *"random: on"* ]]; then
+    [ -n "$active" ] && active+=",5" || active="-a 5"
+elif [[ ${status} == *"random: off"* ]]; then
+    [ -n "$urgent" ] && urgent+=",5" || urgent="-u 5"
+else
+    option_6=" Parsing Error"
+fi
 
-            else:
-                    check_call(["mpc", "-h", host, "play", tmp])
+# Rofi CMD
+rofi_cmd() {
+	rofi -dmenu \
+		-p "$prompt" \
+		-mesg "$mesg" \
+		${active} ${urgent} \
+		-markup-rows \
+		-theme ${theme}
+}
 
-run_rofi()
+# Pass variables to rofi dmenu
+run_rofi() {
+	echo -e "$option_1\n$option_2\n$option_3\n$option_4\n$option_5\n$option_6" | rofi_cmd
+}
+
+# Execute Command
+run_cmd() {
+	if [[ "$1" == '--opt1' ]]; then
+		mpc -q toggle && notify-send -u low -t 1000 " `mpc current`"
+	elif [[ "$1" == '--opt2' ]]; then
+		mpc -q stop
+	elif [[ "$1" == '--opt3' ]]; then
+		mpc -q prev && notify-send -u low -t 1000 " `mpc current`"
+	elif [[ "$1" == '--opt4' ]]; then
+		mpc -q next && notify-send -u low -t 1000 " `mpc current`"
+	elif [[ "$1" == '--opt5' ]]; then
+		mpc -q repeat
+	elif [[ "$1" == '--opt6' ]]; then
+		mpc -q random
+	fi
+}
+
+# Actions
+chosen="$(run_rofi)"
+case ${chosen} in
+    $option_1)
+		run_cmd --opt1
+        ;;
+    $option_2)
+		run_cmd --opt2
+        ;;
+    $option_3)
+		run_cmd --opt3
+        ;;
+    $option_4)
+		run_cmd --opt4
+        ;;
+    $option_5)
+		run_cmd --opt5
+        ;;
+    $option_6)
+		run_cmd --opt6
+        ;;
+esac

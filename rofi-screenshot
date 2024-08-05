@@ -44,7 +44,7 @@ case $choice in
       grim $DIR$NAME && notify-send -a 'Grim' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;;
    $option2)
       delayoptions="$delayoption1\n$delayoption2\n$delayoption3"
-      delay=$(echo -e "$delayoptions" | rofi -theme ~/.config/rofi/themes/catppuccin-macchiato-screenshot.rasi -i -dmenu -no-show-icons -no-sidebar-mode -lines 3 -width 30 -p "  ")
+      delay=$(echo -e "$delayoptions" | rofi -theme ~/.config/rofi/themes/catppuccin-macchiato-screenshot.rasi -i -dmenu -no-show-icons -no-sidebar-mode -lines 3 -width 30 -p " Screenshot ")
 
       case $delay in
          $delayoption1)
