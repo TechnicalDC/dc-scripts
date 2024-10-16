@@ -13,7 +13,7 @@
 
 DIR="$HOME/Pictures/screenshots/"
 NAME="grim_$(date +%d%m%Y_%H%M%S).png"
-USE_ICON="yes"
+USE_ICON="no"
 
 option1="󰍹  Entire screen"
 option2="󰄉  Entire screen with delay"
@@ -36,7 +36,7 @@ fi
 
 options="$option1\n$option2\n$option3"
 
-choice=$(echo -e "$options" | rofi -theme ~/.config/rofi/themes/catppuccin-macchiato-screenshot.rasi -i -dmenu -no-show-icons -no-sidebar-mode -columns 4 -width 30 -p " Screenshot " -mesg "DIR: $DIR")
+choice=$(echo -e "$options" | rofi -theme ~/.config/rofi/themes/$THEME/catppuccin-mocha-screenshot.rasi -i -dmenu -no-show-icons -no-sidebar-mode -columns 4 -width 30 -p " Screenshot " -mesg "DIR: $DIR")
 
 case $choice in
    $option1)
