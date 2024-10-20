@@ -36,7 +36,7 @@ yes=$choice
 
 case $choice in
 	$option1)
-	   hyprlock ;;
+	   hyprlock -c $HOME/.config/hypr/themes/$THEME/hyprlock.conf ;;
 	$option2)
       choice=$(echo "$yes|$no" | rofi -dmenu -sep "|" -theme ~/.config/rofi/themes/$THEME/catppuccin-mocha-dialog.rasi -mesg "Are you sure?")
       if [[ $choice == $yes ]]; then

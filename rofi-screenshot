@@ -13,7 +13,7 @@
 
 DIR="$HOME/Pictures/screenshots/"
 NAME="grim_$(date +%d%m%Y_%H%M%S).png"
-USE_ICON="no"
+USE_ICON="yes"
 
 option1="󰍹  Entire screen"
 option2="󰄉  Entire screen with delay"
