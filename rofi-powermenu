@@ -31,7 +31,7 @@ options="$option1\n"
 options="$options$option2\n"
 options="$options$option3\n$option4"
 
-choice=$(echo -e "$options" | rofi -dmenu -p ' Power ' -theme ~/.config/rofi/themes/$THEME/catppuccin-mocha-powermenu.rasi -i -no-show-icons -lines 4)
+choice=$(echo -e "$options" | rofi -dmenu -p ' Power ' -theme ~/.config/rofi/themes/pywal/powermenu.rasi -i -no-show-icons -lines 4)
 yes=$choice
 
 case $choice in
