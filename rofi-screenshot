@@ -12,37 +12,38 @@
 # This script requires grim and slurp
 
 DIR="$HOME/Pictures/screenshots/"
+REL_DIR="~/Pictures/screenshots/"
 NAME="grim_$(date +%d%m%Y_%H%M%S).png"
 USE_ICON="no"
-ROFI_THEME=$HOME/.config/rofi/themes/pywal/screenshot.rasi
+ROFI_THEME=$HOME/.config/rofi/themes/solid/screenshot.rasi
 
-option1="󰍹  Entire screen"
-option2="󰄉  Entire screen with delay"
-option3="  Selection"
-option4="  Active window"
-delayoption1="Take screenshot with 3 sec delay"
-delayoption2="Take screenshot with 5 sec delay"
-delayoption3="Take screenshot with 10 sec delay"
+option1="󰍹  Capture screen"
+option2="󰄉  Capture screen with delay"
+option3="  Capture selection"
+option4="  Capture window"
+delayoption1="After 3 sec delay"
+delayoption2="After 5 sec delay"
+delayoption3="After 10 sec delay"
 
 options="$option1\n$option2\n$option3"
 
-choice=$(echo -e "$options" | rofi -theme $ROFI_THEME -i -dmenu -no-show-icons -no-sidebar-mode -p " Screenshot " -mesg "DIR: $DIR")
-
+choice=$(echo -e "$options" | rofi -theme $ROFI_THEME -i -dmenu -no-show-icons -no-sidebar-mode -p " Screenshot " -mesg " $REL_DIR")
+echo $choice
 case $choice in
    $option1)
       sleep 1
       grim $DIR$NAME && notify-send 'Grim' 'Screenshot saved.' -i $DIR$NAME -t 2000 ;;
    $option2)
       delayoptions="$delayoption1\n$delayoption2\n$delayoption3"
-      delay=$(echo -e "$delayoptions" | rofi -theme $ROFI_THEME -i -dmenu -no-show-icons -no-sidebar-mode -lines 3 -width 30 -p " Screenshot " -mesg "DIR: $DIR")
+      delay=$(echo -e "$delayoptions" | rofi -theme $ROFI_THEME -i -dmenu -no-show-icons -no-sidebar-mode -mesg " $REL_DIR")
 
       case $delay in
          $delayoption1)
-            sleep 3; grim $DIR$NAME && notify-send 'Grim' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;;
+            sleep 3; grim $DIR$NAME && notify-send 'Grim' 'Screenshot saved.' -i $DIR$NAME -t 2000 ;;
          $delayoption2)
-            sleep 5; grim $DIR$NAME && notify-send 'Grim' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;;
+            sleep 5; grim $DIR$NAME && notify-send 'Grim' 'Screenshot saved.' -i $DIR$NAME -t 2000 ;;
          $delayoption3)
-            sleep 10; grim $DIR$NAME && notify-send 'Grim' 'Screenshot saved.' -i 'dialog-information' -t 2000 ;;
+            sleep 10; grim $DIR$NAME && notify-send 'Grim' 'Screenshot saved.' -i $DIR$NAME -t 2000 ;;
       esac ;;
 
    $option3)

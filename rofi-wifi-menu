@@ -4,7 +4,7 @@
 # nmcli dev wifi rescan
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-THEME=$HOME/.config/rofi/themes/catppuccin-macchiato.rasi
+THEME=$HOME/.config/rofi/themes/solid/launcher.rasi
 
 FIELDS=SSID,SECURITY
 POSITION=0

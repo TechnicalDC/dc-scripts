@@ -13,11 +13,13 @@ function tmux_sessions()
     tmux list-session | sed 's/: /| /' | column -t -s'|' -o' | '
 }
 
+
+THEME="$HOME/.config/rofi/themes/solid/mpc.rasi"
 ADD="  Add new session"
 DELETE="󰆴  Delete a session"
 QUIT="󰗼  Quit"
 
-TMUX_SESSION=$( (printf "%s\n" "$ADD" "$DELETE" "$QUIT"; tmux_sessions) | rofi -theme ~/.config/rofi/themes/catppuccin-macchiato.rasi -dmenu -p " tmux " -no-show-icons)
+TMUX_SESSION=$( (printf "%s\n" "$ADD" "$DELETE" "$QUIT"; tmux_sessions) | rofi -theme $THEME -dmenu -p " tmux " -no-show-icons)
 
 if [[ "$ADD" = "$TMUX_SESSION" ]]; then
 	rofi-sensible-terminal -e tmux new-session &

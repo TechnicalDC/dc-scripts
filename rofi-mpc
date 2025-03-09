@@ -6,7 +6,7 @@
 ## Applets : MPD (music)
 
 # Import Current Theme
-theme="$HOME/.config/rofi/themes/pywal/mpc.rasi"
+theme="$HOME/.config/rofi/themes/solid/mpc.rasi"
 
 # Theme Elements
 status="`mpc status`"
