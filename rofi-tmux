@@ -16,7 +16,7 @@ function tmux_sessions()
 
 THEME="$HOME/.config/rofi/themes/solid/mpc.rasi"
 ADD="  Add new session"
-DELETE="󰆴  Delete a session"
+DELETE=" Delete a session"
 QUIT="󰗼  Quit"
 
 TMUX_SESSION=$( (printf "%s\n" "$ADD" "$DELETE" "$QUIT"; tmux_sessions) | rofi -theme $THEME -dmenu -p " tmux " -no-show-icons)
