@@ -8,49 +8,40 @@
 # Author: Dilip Chauhan
 # Github: https://github/TechnicalDC
 
-USE_ICONS=false
-
-if [[USE_ICONS]]; then
-   option1=""
-   option2=""
-   option3=""
-   option4=""
-   yes=" Ok"
-   no="󰜺 Cancel"
-else
-   option1="Lock"
-   option2="Logout"
-   option3="Restart"
-   option4="Shutdown"
-   yes="Ok"
-   no="Cancel"
-fi
-
+yes=" Ok"
+no="󰜺 Cancel"
+option1=" Lock"
+option2=" Logout"
+option3=" Restart"
+option4=" Shutdown"
 
 options="$option1\n"
 options="$options$option2\n"
 options="$options$option3\n$option4"
 
-choice=$(echo -e "$options" | rofi -dmenu -p ' Power ' -theme ~/.config/rofi/themes/pywal/powermenu.rasi -i -no-show-icons -lines 4)
+choice=$(echo -e "$options" | rofi -dmenu -theme ~/.config/rofi/themes/solid/powermenu.rasi -i -no-show-icons)
 yes=$choice
 
 case $choice in
 	$option1)
-	   hyprlock -c $HOME/.config/hypr/themes/$THEME/hyprlock.conf ;;
+	   hyprlock -c $HOME/.config/hypr/themes/solid/hyprlock.conf ;;
 	$option2)
-      choice=$(echo "$yes|$no" | rofi -dmenu -sep "|" -theme ~/.config/rofi/themes/$THEME/catppuccin-mocha-dialog.rasi -mesg "Are you sure?")
-      if [[ $choice == $yes ]]; then
-         bspc quit || i3-msg exit || herbstclient quit || hyprctl dispatch exit
-      fi ;;
+      # choice=$(echo "$yes|$no" | rofi -dmenu -sep "|" -theme ~/.config/rofi/themes/pywal/dialog.rasi -mesg "Are you sure?")
+      # if [[ $choice == $yes ]]; then
+         hyprctl dispatch exit
+      # fi ;;
+      ;;
 	$option3)
-      choice=$(echo "$yes|$no" | rofi -dmenu -sep "|" -theme ~/.config/rofi/themes/$THEME/catppuccin-mocha-dialog.rasi -mesg "Are you sure?")
-      if [[ $choice == $yes ]]; then
+      # choice=$(echo "$yes|$no" | rofi -dmenu -sep "|" -theme ~/.config/rofi/themes/pywal/dialog.rasi -mesg "Are you sure?")
+      # if [[ $choice == $yes ]]; then
          systemctl reboot
-      fi ;;
+      # fi ;;
+      ;;
 	$option4)
-      choice=$(echo "$yes|$no" | rofi -dmenu -sep "|" -theme ~/.config/rofi/themes/$THEME/catppuccin-mocha-dialog.rasi -mesg "Are you sure?")
-      if [[ $choice == $yes ]]; then
+      # choice=$(echo "$yes|$no" | rofi -dmenu -sep "|" -theme ~/.config/rofi/themes/pywal/dialog.rasi -mesg "Are you sure?")
+      # if [[ $choice == $yes ]]; then
          systemctl poweroff
-      fi ;;
+      # fi ;;
+      ;;
 esac
 
