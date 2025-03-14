@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-programs="nvim yazi"
+programs="nvim yazi lazygit"
 
 selected=$(echo $programs | tr ' ' '\n' | fzf --tmux --margin 0)
 
