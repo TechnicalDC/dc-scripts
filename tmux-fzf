@@ -4,4 +4,8 @@ programs="nvim yazi"
 
 selected=$(echo $programs | tr ' ' '\n' | fzf --tmux --margin 0)
 
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
 tmux new-window -n $selected $selected
