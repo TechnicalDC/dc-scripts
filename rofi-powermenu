@@ -10,10 +10,15 @@
 
 yes=" Ok"
 no="󰜺 Cancel"
-option1=" Lock"
-option2=" Logout"
-option3=" Restart"
-option4=" Shutdown"
+# option1=" Lock"
+# option2=" Logout"
+# option3=" Restart"
+# option4=" Shutdown"
+
+option1=" "
+option2=" "
+option3=" "
+option4=" "
 
 options="$option1\n"
 options="$options$option2\n"
