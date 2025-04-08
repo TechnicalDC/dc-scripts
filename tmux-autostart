@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
-if [[ $# -eq 1 ]]; then
-    session=$1
-fi
+# if [[ $# -eq 1 ]]; then
+#    session=$1
+# else
+session=$(tmux ls | grep attached | cut -d ":" -f 1)
+# fi
 
 case $session in
    "work"|"home")
-      tmux send -t $session:1.1 "nvim" ENTER
+      tmux send -t $session:1 "nvim" ENTER
       # tmux new-window -t $session
       ;;
 esac
