@@ -9,6 +9,7 @@ session=$(tmux ls | grep attached | cut -d ":" -f 1)
 case $session in
    "work"|"home")
       tmux send -t $session:1 "nvim" ENTER
-      # tmux new-window -t $session
+      tmux new-window -t $session:2
+      tmux send -t $session:2 "task" ENTER
       ;;
 esac
