@@ -8,24 +8,26 @@
 # Author: Dilip Chauhan
 # Github: https://github/TechnicalDC
 
-yes=" Ok"
-no="󰜺 Cancel"
-# option1=" Lock"
-# option2=" Logout"
-# option3=" Restart"
-# option4=" Shutdown"
+USE_ICON="no"
+ROFI_THEME=$HOME/.config/rofi/themes/minimal/powermenu.rasi
 
+option1="Lock"
+option2="Logout"
+option3="Reboot"
+option4="Shutdown"
+
+if [ "$USE_ICON" =  "yes" ]; then
 option1=" "
 option2=" "
 option3=" "
 option4=" "
+fi
 
 options="$option1\n"
 options="$options$option2\n"
 options="$options$option3\n$option4"
 
-choice=$(echo -e "$options" | rofi -dmenu -theme ~/.config/rofi/themes/solid/powermenu.rasi -i -no-show-icons)
-yes=$choice
+choice=$(echo -e "$options" | rofi -dmenu -theme $ROFI_THEME -i -no-show-icons)
 
 case $choice in
 	$option1)
