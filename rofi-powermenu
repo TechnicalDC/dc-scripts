@@ -31,7 +31,7 @@ choice=$(echo -e "$options" | rofi -dmenu -theme $ROFI_THEME -i -no-show-icons)
 
 case $choice in
 	$option1)
-	   hyprlock -c $HOME/.config/hypr/themes/solid/hyprlock.conf ;;
+	   hyprlock -c $HOME/.config/hypr/themes/minimal/hyprlock.conf ;;
 	$option2)
       # choice=$(echo "$yes|$no" | rofi -dmenu -sep "|" -theme ~/.config/rofi/themes/pywal/dialog.rasi -mesg "Are you sure?")
       # if [[ $choice == $yes ]]; then
