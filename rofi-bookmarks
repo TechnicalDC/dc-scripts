@@ -1,10 +1,10 @@
 #!/bin/bash
 
-#  __                 __                         __          
+#  __                 __                         __
 # |  |--.-----.-----.|  |--.--------.---.-.----.|  |--.-----.
 # |  _  |  _  |  _  ||    <|        |  _  |   _||    <|__ --|
 # |_____|_____|_____||__|__|__|__|__|___._|__|  |__|__|_____|
-                                                           
+
 
 # Author: Dilip Chauhan
 # Github: https://github/TechnicalDC
@@ -13,10 +13,15 @@
 # browser than replace qutebrowser command with command that launch your
 # browser)
 
-file="$HOME/.config/qutebrowser/bookmarks/urls"
-url=$(cat $HOME/.config/qutebrowser/bookmarks/urls | cut -d' ' -f2- | rofi -dmenu -i -p ' ')
-if grep -q "$url" $file ; then
-	qutebrowser --target window "$url"
-else if "$url" != "" ; then
-	qutebrowser "$url"
+FILE="$HOME/.config/qutebrowser/bookmarks.txt"
+
+if [ ! -f $FILE ]; then
+	touch $FILE
+fi
+
+URL=$(cat $FILE | cut -d' ' -f1 | rofi -dmenu -i -p 'bookmarks')
+if grep -q "$URL" $FILE ; then
+	wl-copy $URL
+else
+	echo $URL >> $FILE
 fi
