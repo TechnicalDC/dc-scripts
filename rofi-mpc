@@ -6,7 +6,6 @@
 ## Applets : MPD (music)
 
 # Import Current Theme
-theme="$HOME/.config/rofi/themes/solid/mpc.rasi"
 
 # Theme Elements
 status="`mpc status`"
@@ -20,15 +19,15 @@ fi
 
 # Options
 if [[ ${status} == *"[playing]"* ]]; then
-   option_1=" Pause"
+   option_1="Pause"
 else
-   option_1=" Play"
+   option_1="Play"
 fi
-option_2=" Stop"
-option_3=" Previous"
-option_4=" Next"
-option_5=" Repeat"
-option_6=" Random"
+option_2="Stop"
+option_3="Previous"
+option_4="Next"
+option_5="Repeat"
+option_6="Random"
 
 # Toggle Actions
 active=''
@@ -39,7 +38,7 @@ if [[ ${status} == *"repeat: on"* ]]; then
 elif [[ ${status} == *"repeat: off"* ]]; then
     urgent="-u 4"
 else
-    option_5=" Parsing Error"
+    option_5="Parsing Error"
 fi
 # Random
 if [[ ${status} == *"random: on"* ]]; then
@@ -47,17 +46,16 @@ if [[ ${status} == *"random: on"* ]]; then
 elif [[ ${status} == *"random: off"* ]]; then
     [ -n "$urgent" ] && urgent+=",5" || urgent="-u 5"
 else
-    option_6=" Parsing Error"
+    option_6="Parsing Error"
 fi
 
 # Rofi CMD
 rofi_cmd() {
-	rofi -dmenu \
+	rofi -i -dmenu \
 		-p "$prompt" \
 		-mesg "$mesg" \
 		${active} ${urgent} \
-		-markup-rows \
-		-theme ${theme}
+		-markup-rows
 }
 
 # Pass variables to rofi dmenu
