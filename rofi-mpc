@@ -48,7 +48,8 @@ rofi_cmd() {
 		-p "$prompt" \
 		-mesg "$mesg" \
 		${active} ${urgent} \
-		-markup-rows
+		-markup-rows \
+	   -l 6
 }
 
 # Pass variables to rofi dmenu
