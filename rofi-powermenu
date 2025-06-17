@@ -34,7 +34,7 @@ case $choice in
 	$option2)
       # choice=$(echo "$yes|$no" | rofi -dmenu -sep "|" -theme ~/.config/rofi/themes/pywal/dialog.rasi -mesg "Are you sure?")
       # if [[ $choice == $yes ]]; then
-         hyprctl dispatch exit
+         hyprctl dispatch exit || niri msg action quit
       # fi ;;
       ;;
 	$option3)
