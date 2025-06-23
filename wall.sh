@@ -4,6 +4,7 @@ WALLPAPERS_DIR="$HOME/Pictures/wallpapers/"
 CACHE_DIR="${HOME}/.cache/wally/wallpapers"
 HYPRPAPER_CONF="$HOME/.config/hypr/hyprpaper.conf"
 BLUR="50x30"
+BLURRED_WALLPAPER="$HOME/.cache/wal/wallpaper_blurred.png"
 ROFI_THEME_WAL="$HOME/.config/rofi/themes/minimal/grid.rasi"
 
 generate_cache () {
@@ -37,6 +38,7 @@ setwallpaper () {
    magick $1 -strip -thumbnail 500x500^ -gravity center -extent 500x500 $ROFI_BACKGROUND
    # $WALLPAPER_CMD $2
    echo -e "preload = $1\nwallpaper = , $1" > $HYPRPAPER_CONF
+	swww img $BLURRED_WALLPAPER
    killall hyprpaper && hyprpaper &
 }
 
