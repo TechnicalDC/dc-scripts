@@ -6,6 +6,6 @@ case $session in
    "work")
       tmux send -t $session:1 "nvim ~/Notes/index.md" ENTER
       tmux new-window -t $session:2
-      tmux send -t $session:2 "task" ENTER
+      tmux send -t $session:2 "vit" ENTER
       ;;
 esac
