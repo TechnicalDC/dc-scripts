@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+LAYOUTS="tiled even-horizontal even-vertical main-horizontal main-horizontal-mirrored main-vertical main-vertical-mirrored"
+
+# Select the layout
+SELECTED=$(echo $LAYOUTS | tr ' ' '\n' | fzf --tmux --border none)
+
+tmux select-layout $SELECTED
