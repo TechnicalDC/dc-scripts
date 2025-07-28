@@ -9,10 +9,10 @@ case $1 in
    "note")
       tmux display-popup $TMUX_POPUP_OPTS -E "nvim $HOME/Notes/"
       ;;
-   "nnn")
-      tmux display-popup $TMUX_POPUP_OPTS -E "nnn"
-      ;;
    "persist")
       tmux display-popup $TMUX_POPUP_OPTS -E "tmux attach -t persist || tmux new-session -s persist"
+      ;;
+   *)
+      tmux display-popup $TMUX_POPUP_OPTS -E "$1"
       ;;
 esac
