@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
 TMUX_POPUP_OPTS="-b double -w 70% -h 70%"
+TMUX_BIG_POPUP_OPTS="-b double -w 90% -h 90%"
 
 case $1 in
    "todo")
@@ -10,7 +11,7 @@ case $1 in
       tmux display-popup $TMUX_POPUP_OPTS -E "nvim $HOME/Notes/"
       ;;
    "git")
-      tmux display-popup $TMUX_POPUP_OPTS -E "lazgit"
+      tmux display-popup $TMUX_BIG_POPUP_OPTS -E "lazygit"
       ;;
    "persist")
       tmux display-popup $TMUX_POPUP_OPTS -E "tmux attach -t persist || tmux new-session -s persist"
