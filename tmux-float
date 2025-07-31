@@ -9,6 +9,9 @@ case $1 in
    "note")
       tmux display-popup $TMUX_POPUP_OPTS -E "nvim $HOME/Notes/"
       ;;
+   "git")
+      tmux display-popup $TMUX_POPUP_OPTS -E "lazgit"
+      ;;
    "persist")
       tmux display-popup $TMUX_POPUP_OPTS -E "tmux attach -t persist || tmux new-session -s persist"
       ;;
