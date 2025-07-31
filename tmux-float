@@ -5,18 +5,15 @@ TMUX_BIG_POPUP_OPTS="-b double -w 90% -h 90%"
 
 case $1 in
    "todo")
-      tmux display-popup $TMUX_POPUP_OPTS -E "nvim $HOME/Notes/todo.md"
-      ;;
-   "note")
-      tmux display-popup $TMUX_POPUP_OPTS -E "nvim $HOME/Notes/"
+      tmux display-popup -d "#{pane_current_path}" $TMUX_POPUP_OPTS -E "vit"
       ;;
    "git")
-      tmux display-popup $TMUX_BIG_POPUP_OPTS -E "lazygit"
+      tmux display-popup -d "#{pane_current_path}" $TMUX_BIG_POPUP_OPTS -E "lazygit"
       ;;
    "persist")
-      tmux display-popup $TMUX_POPUP_OPTS -E "tmux attach -t persist || tmux new-session -s persist"
+      tmux display-popup -d "#{pane_current_path}" $TMUX_POPUP_OPTS -E "tmux attach -t persist || tmux new-session -s persist"
       ;;
    *)
-      tmux display-popup $TMUX_POPUP_OPTS -E "$1"
+      tmux display-popup -d "#{pane_current_path}" $TMUX_POPUP_OPTS -E "$1"
       ;;
 esac
