@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/ ~/dotfiles ~/dotfiles/.config ~/Gits ~/work -mindepth 1 -maxdepth 1 -type d | fzf --tmux --border none)
+    selected=$(find ~/ ~/jira-tickets ~/dotfiles ~/dotfiles/.config ~/Gits ~/work -mindepth 1 -maxdepth 1 -type d | fzf --tmux --border double)
 fi
 
 if [[ -z $selected ]]; then
