@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-HOSTNAME=$(grep "Host " $HOME/.ssh/config | cut -d' ' -f2 | rofi -dmenu -p "ssh")
-
-if [ -n "$my_string" ]; then
-   ssh $HOSTNAME
-fi
