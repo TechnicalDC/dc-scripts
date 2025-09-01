@@ -2,6 +2,8 @@
 
 TMUX_POPUP_OPTS="-b double -w 70% -h 70%"
 TMUX_BIG_POPUP_OPTS="-b double -w 90% -h 90%"
+JOURNAL_DIR="$HOME/Notes/journal/$(date +%Y)/$(date +%m)"
+JOURNAL="$JOURNAL_DIR/$(date +%d_%m_%Y).md"
 
 case $1 in
    "todo")
@@ -13,6 +15,16 @@ case $1 in
    "persist")
       tmux display-popup -d "#{pane_current_path}" $TMUX_POPUP_OPTS -E "tmux attach -t persist || tmux new-session -s persist"
       ;;
+   "journal")
+      if [ -f "$JOURNAL_DIR/$(date +%d_%m_%Y)" ]; then
+         mkdir -p $JOURNAL_DIR
+         echo "# $(date +%d/%m/%Y)" > $JOURNAL
+      fi
+      tmux display-popup -d "#{pane_current_path}" $TMUX_POPUP_OPTS -E "nvim $JOURNAL"
+      ;;
+   # "todo")
+   #    tmux display-popup -d "#{pane_current_path}" $TMUX_POPUP_OPTS -E "nvim ~/Notes/todo.md"
+   #    ;;
    *)
       tmux display-popup -d "#{pane_current_path}" $TMUX_POPUP_OPTS -E "$1"
       ;;
