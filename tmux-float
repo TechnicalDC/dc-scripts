@@ -1,3 +1,12 @@
+###############################################################################
+# Script Name : tmux-float
+# Author      : Dilip Chauhan
+# Repository  : https://github.com/dc-scripts
+# Description : A utility script to launch floating terminals in tmux, making
+#               it easier to run commands or view files without disrupting
+#               the current tmux workflow.
+###############################################################################
+
 #!/usr/bin/env sh
 
 TMUX_POPUP_OPTS="-b double -w 70% -h 70%"
@@ -22,10 +31,7 @@ case $1 in
       fi
       tmux display-popup -d "#{pane_current_path}" $TMUX_POPUP_OPTS -E "nvim $JOURNAL"
       ;;
-   # "todo")
-   #    tmux display-popup -d "#{pane_current_path}" $TMUX_POPUP_OPTS -E "nvim ~/Notes/todo.md"
-   #    ;;
    *)
-      tmux display-popup -d "#{pane_current_path}" $TMUX_POPUP_OPTS -E "$1"
+      tmux display-popup -d "#{pane_current_path}" $TMUX_POPUP_OPTS -E "$@"
       ;;
 esac
