@@ -7,7 +7,7 @@
 #               the current tmux workflow.
 ###############################################################################
 
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 TMUX_POPUP_OPTS="-b double -w 70% -h 70%"
 TMUX_BIG_POPUP_OPTS="-b double -w 90% -h 90%"
@@ -25,9 +25,13 @@ case $1 in
       tmux display-popup -d "#{pane_current_path}" $TMUX_POPUP_OPTS -E "tmux attach -t persist || tmux new-session -s persist"
       ;;
    "journal")
-      if [ -f "$JOURNAL_DIR/$(date +%d_%m_%Y)" ]; then
+      if [[ ! -d "$JOURNAL_DIR" ]]; then
          mkdir -p $JOURNAL_DIR
+         echo "# $(date +%m,%Y)" > $JOURNAL_DIR/index.md
+      fi
+      if [[ ! -f "$JOURNAL_DIR/$(date +%d_%m_%Y).md" ]]; then
          echo "# $(date +%d/%m/%Y)" > $JOURNAL
+         echo "- [$(date +%d)](./$(date +%d_%m_%Y).md)" >> $JOURNAL_DIR/index.md
       fi
       tmux display-popup -d "#{pane_current_path}" $TMUX_POPUP_OPTS -E "nvim $JOURNAL"
       ;;

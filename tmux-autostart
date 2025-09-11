@@ -11,9 +11,13 @@ case $session in
 
       tmux new-window -t $session:2
 
-      if [ -f "$JOURNAL_DIR/$(date +%d_%m_%Y)" ]; then
+      if [[ ! -d "$JOURNAL_DIR" ]]; then
          mkdir -p $JOURNAL_DIR
+         echo "# $(date +%m,%Y)" > $JOURNAL_DIR/index.md
+      fi
+      if [[ ! -f "$JOURNAL_DIR/$(date +%d_%m_%Y).md" ]]; then
          echo "# $(date +%d/%m/%Y)" > $JOURNAL
+         echo "- [$(date +%d)](./$(date +%d_%m_%Y).md)" >> $JOURNAL_DIR/index.md
       fi
 
       tmux send -t $session:2 "nvim $JOURNAL" ENTER

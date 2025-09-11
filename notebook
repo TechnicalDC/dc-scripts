@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+DIR="$HOME/Notes/journal"
+TODO="$HOME/Notes/todo.md"
+YEAR=$(date +%Y)
+MONTH=$(date +%m)
+JOURNAL_DIR="$DIR/$YEAR/$MONTH"
+JOURNAL="$JOURNAL_DIR/$(date +%d_%m_%Y).md"
+
+if [[ ! -f "$TODO" ]]; then
+   echo "# TODO" > "$TODO"
+fi
+
+if [[ ! -d "$JOURNAL_DIR" ]]; then
+   mkdir -p $JOURNAL_DIR
+fi
+
+if [[ ! -f "$DIR/index.md" ]]; then
+   echo "# $(date +%Y)" > "$DIR/index.md"
+   echo "\n" >> "$DIR/index.md"
+   echo "- [$(date +%Y)](./$(date +%Y)/index.md)" >> "$DIR/index.md"
+fi
+
+if [[ ! -f "$DIR/$YEAR/index.md" ]]; then
+   echo "# $(date +%Y)" > "$DIR/$YEAR/index.md"
+   echo "\n" >> "$DIR/$YEAR/index.md"
+   echo "- [$(date +%Y)](./$(date +%Y)/index.md)" >> "$DIR/index.md"
+fi
+
+if [[ ! -f "$DIR/$YEAR/$MONTH/index.md" ]]; then
+   echo "# $(date +%m,%Y)" > "$DIR/$YEAR/$MONTH/index.md"
+   echo "\n" >> "$DIR/$YEAR/$MONTH/index.md"
+   echo "- [$(date +%m)](./$(date +%m)/index.md)" >> "$DIR/$YEAR/index.md"
+fi
+
+if [[ ! -f "$JOURNAL" ]]; then
+   echo "# $(date +%d/%m/%Y)" > $JOURNAL
+   echo "\n" >> $JOURNAL
+   echo "- [$(date +%d)](./$(date +%d_%m_%Y).md)" >> $JOURNAL_DIR/index.md
+fi
+
+nvim $JOURNAL
