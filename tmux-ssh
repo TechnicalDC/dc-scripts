@@ -4,5 +4,10 @@ HOSTNAME=$(grep "Host " $HOME/.ssh/config | cut -d' ' -f2 | fzf --tmux --border 
 
 if [ -n "$HOSTNAME" ]; then
    tmux new-window -n "ssh - $HOSTNAME" ssh $HOSTNAME
-   tmux select-pane -P 'bg=#000000,fg=#00ff00'
+   case $HOSTNAME in
+      dev*)
+         tmux select-pane -P 'bg=#000000,fg=#00ff00' ;;
+      *)
+         tmux select-pane -P 'bg=#000000,fg=#ffffff' ;;
+   esac
 fi

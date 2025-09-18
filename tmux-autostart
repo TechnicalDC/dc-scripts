@@ -9,17 +9,10 @@ case $session in
    "work")
       tmux send -t $session:1 "nvim ~/Notes/todo.md" ENTER
 
-      tmux new-window -t $session:2
+      tmux new-window -t $session:2 -n "notes"
+      tmux send -t $session:2 "notebook" ENTER
 
-      if [[ ! -d "$JOURNAL_DIR" ]]; then
-         mkdir -p $JOURNAL_DIR
-         echo "# $(date +%m,%Y)" > $JOURNAL_DIR/index.md
-      fi
-      if [[ ! -f "$JOURNAL_DIR/$(date +%d_%m_%Y).md" ]]; then
-         echo "# $(date +%d/%m/%Y)" > $JOURNAL
-         echo "- [$(date +%d)](./$(date +%d_%m_%Y).md)" >> $JOURNAL_DIR/index.md
-      fi
-
-      tmux send -t $session:2 "nvim $JOURNAL" ENTER
+      tmux new-window -t $session:3 -n "tickets"
+      tmux send -t $session:3 "nvim ~/Notes/tickets.md" ENTER
       ;;
 esac
