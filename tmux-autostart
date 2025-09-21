@@ -7,6 +7,7 @@ session=$(tmux ls | grep attached | cut -d ":" -f 1)
 
 case $session in
    "work")
+      tmux renamew "todo"
       tmux send -t $session:1 "nvim ~/Notes/todo.md" ENTER
 
       tmux new-window -t $session:2 -n "notes"
