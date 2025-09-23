@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-HOSTNAME=$(grep "Host " $HOME/.ssh/config | cut -d' ' -f2 | fzf --margin=20%,30% --prompt "[ssh] ")
+HOSTNAME=$(grep "Host " $HOME/.ssh/config | cut -d' ' -f2 | fzf  --tmux 100%,100%,border-native --margin=20%,30% --prompt "[ssh] ")
 
 if [ -n "$HOSTNAME" ]; then
    tmux new-window -n "ssh - $HOSTNAME" ssh $HOSTNAME
