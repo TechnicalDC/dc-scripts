@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 
-HOSTNAME=$(grep "Host " $HOME/.ssh/config | cut -d' ' -f2 | fzf  --tmux 100%,100%,border-native --margin=20%,30% --prompt "[ssh] ")
+HOSTNAME=$(grep "Host " $HOME/.ssh/config | cut -d' ' -f2 | sort | fzf --tmux 100%,100%,border-native --margin=20%,30% --prompt "[ssh] ")
 
 if [ -n "$HOSTNAME" ]; then
    tmux new-window -n "ssh - $HOSTNAME" ssh $HOSTNAME
    case $HOSTNAME in
       dev*)
          tmux select-pane -P 'bg=#000000,fg=#00ff00' ;;
+      public)
+         tmux select-pane -P 'bg=#000000,fg=#ff0000' ;;
       *)
-         tmux select-pane -P 'bg=#000000,fg=#ffffff' ;;
+         tmux select-pane -P 'bg=#000000,fg=#dddddd' ;;
    esac
 fi
