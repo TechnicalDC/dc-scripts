@@ -17,26 +17,25 @@ fi
 
 if [[ ! -f "$DIR/index.md" ]]; then
    echo "# $(date +%Y)" > "$DIR/index.md"
-   echo "\n" >> "$DIR/index.md"
+   echo "" >> "$DIR/index.md"
    echo "- [$(date +%Y)](./$(date +%Y)/index.md)" >> "$DIR/index.md"
 fi
 
 if [[ ! -f "$DIR/$YEAR/index.md" ]]; then
    echo "# $(date +%Y)" > "$DIR/$YEAR/index.md"
-   echo "\n" >> "$DIR/$YEAR/index.md"
+   echo "" >> "$DIR/$YEAR/index.md"
    echo "- [$(date +%Y)](./$(date +%Y)/index.md)" >> "$DIR/index.md"
 fi
 
 if [[ ! -f "$DIR/$YEAR/$MONTH/index.md" ]]; then
-   echo "# $(date +%m,%Y)" > "$DIR/$YEAR/$MONTH/index.md"
-   echo "\n" >> "$DIR/$YEAR/$MONTH/index.md"
-   echo "- [$(date +%m)](./$(date +%m)/index.md)" >> "$DIR/$YEAR/index.md"
+   echo "# $(date +%B,\ %Y)" > "$DIR/$YEAR/$MONTH/index.md"
+   echo "" >> "$DIR/$YEAR/$MONTH/index.md"
+   # echo "- [$(date +%m)](./$(date +%m)/index.md)" >> "$DIR/$YEAR/index.md"
 fi
 
-if [[ ! -f "$JOURNAL" ]]; then
-   echo "# $(date +%d/%m/%Y)" > $JOURNAL
-   echo "" >> $JOURNAL
-   echo "- [$(date +%d)](./$(date +%d_%m_%Y).md)" >> $JOURNAL_DIR/index.md
+if ! grep -q "## $(date +%d/%m/%Y)" "$DIR/$YEAR/$MONTH/index.md"; then
+   echo "## $(date +%d/%m/%Y)" >> "$DIR/$YEAR/$MONTH/index.md"
+   echo "" >> "$DIR/$YEAR/$MONTH/index.md"
 fi
 
-nvim $JOURNAL
+nvim "$DIR/$YEAR/$MONTH/index.md"
