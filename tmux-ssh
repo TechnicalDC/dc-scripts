@@ -3,13 +3,20 @@
 HOSTNAME=$(grep "Host " $HOME/.ssh/config | cut -d' ' -f2 | sort | fzf --tmux 100%,100%,border-native --margin=20%,30% --prompt "[ssh] ")
 
 if [ -n "$HOSTNAME" ]; then
-   tmux new-window -n "ssh - $HOSTNAME" ssh $HOSTNAME
+
+   case $1 in
+      -v | -h )
+         tmux split-window $1 ssh $HOSTNAME;;
+      *)
+         tmux new-window -n "ssh - $HOSTNAME" ssh $HOSTNAME ;;
+   esac
+
    case $HOSTNAME in
       dev*)
-         tmux select-pane -P 'bg=#000000,fg=#00ff00' ;;
+         tmux select-pane -P 'fg=green' ;;
       public)
-         tmux select-pane -P 'bg=#000000,fg=#ff0000' ;;
+         tmux select-pane -P 'fg=red' ;;
       *)
-         tmux select-pane -P 'bg=#000000,fg=#dddddd' ;;
+         tmux select-pane -P 'fg=white' ;;
    esac
 fi
