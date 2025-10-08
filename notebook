@@ -34,8 +34,8 @@ if [[ ! -f "$DIR/$YEAR/$MONTH/index.md" ]]; then
 fi
 
 if ! grep -q "## $(date +%d/%m/%Y)" "$DIR/$YEAR/$MONTH/index.md"; then
-   echo "## $(date +%d/%m/%Y)" >> "$DIR/$YEAR/$MONTH/index.md"
    echo "" >> "$DIR/$YEAR/$MONTH/index.md"
+   echo "## $(date +%d/%m/%Y)" >> "$DIR/$YEAR/$MONTH/index.md"
 fi
 
 nvim "$DIR/$YEAR/$MONTH/index.md"
