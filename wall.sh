@@ -5,7 +5,7 @@ CACHE_DIR="${HOME}/.cache/wally/wallpapers"
 HYPRPAPER_CONF="$HOME/.config/hypr/hyprpaper.conf"
 BLUR="50x30"
 BLURRED_WALLPAPER="$HOME/.cache/wal/wallpaper_blurred.png"
-ROFI_THEME_WAL="$HOME/.config/rofi/themes/minimal/grid.rasi"
+ROFI_THEME_WAL="$HOME/.config/rofi/themes/blur/wallpaper.rasi"
 
 generate_cache () {
    # Create cache dir if not exists

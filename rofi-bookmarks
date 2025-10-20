@@ -19,7 +19,7 @@ if [ ! -f $FILE ]; then
 	touch $FILE
 fi
 
-URL=$(cat $FILE | cut -d' ' -f1 | rofi -dmenu -i -p 'bookmarks')
+URL=$(cat $FILE | cut -d' ' -f1 | rofi -dmenu -i -p 'bookmarks' -no-show-icons)
 if grep -q "$URL" $FILE ; then
 	wl-copy $URL
 else
