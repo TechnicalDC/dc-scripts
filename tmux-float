@@ -1,4 +1,4 @@
-###############################################################################
+##############################################################################
 # Script Name : tmux-float
 # Author      : Dilip Chauhan
 # Repository  : https://github.com/dc-scripts
@@ -9,8 +9,9 @@
 
 #!/usr/bin/env bash
 
-TMUX_POPUP_OPTS="-b double -w 70% -h 70%"
-TMUX_BIG_POPUP_OPTS="-b double -w 90% -h 90%"
+TMUX_POPUP_OPTS="-b rounded -w 70% -h 70%"
+TMUX_FIXED_POPUP_OPTS="-b rounded -w 82 -h 27"
+TMUX_BIG_POPUP_OPTS="-b rounded -w 80% -h 80%"
 JOURNAL_DIR="$HOME/Notes/journal/$(date +%Y)/$(date +%m)"
 JOURNAL="$JOURNAL_DIR/$(date +%d_%m_%Y).md"
 
