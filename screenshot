@@ -34,8 +34,10 @@ delayoption3="After 10 sec delay"
 
 options="$option1\n$option2\n$option3\n$option4"
 
-choice=$(echo -e "$options" | rofi -i -dmenu -no-show-icons -no-sidebar-mode -p "screenshot" -l 4)
-echo $choice
+choice=$(echo -e "$options" | walker -d)
+# choice=$(echo -e "$options" | rofi -i -dmenu -no-show-icons -no-sidebar-mode -p "screenshot" -l 4)
+#
+
 case $choice in
    $option1)
       sleep 1
