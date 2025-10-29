@@ -37,9 +37,9 @@ setwallpaper () {
    magick $1 -blur $BLUR $BLURRED_WALLPAPER
    magick $1 -strip -thumbnail 500x500^ -gravity center -extent 500x500 $ROFI_BACKGROUND
    # $WALLPAPER_CMD $2
-   echo -e "preload = $1\nwallpaper = , $1" > $HYPRPAPER_CONF
-	swww img $BLURRED_WALLPAPER
-   killall hyprpaper && hyprpaper &
+   # echo -e "preload = $1\nwallpaper = , $1" > $HYPRPAPER_CONF
+	swww img $1 --transition-type center
+   # killall hyprpaper && hyprpaper &
 }
 
 sendnotification () {
@@ -49,6 +49,7 @@ sendnotification () {
 generate_cache
 
 WALLPAPER=$(find "${WALLPAPERS_DIR}"  -maxdepth 1  -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" \) -exec basename {} \; | sort | while read -r A ; do  echo -en "$A\x00icon\x1f""${CACHE_DIR}"/"$A\n" ; done | rofi -dmenu -theme $ROFI_THEME_WAL -p "wallpaper")
+
 if [[ -n "$WALLPAPER" ]]; then
 	setwallpaper $WALLPAPERS_DIR$WALLPAPER
 	post_run
