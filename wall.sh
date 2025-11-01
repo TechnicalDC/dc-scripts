@@ -48,9 +48,10 @@ sendnotification () {
 
 generate_cache
 
-WALLPAPER=$(find "${WALLPAPERS_DIR}"  -maxdepth 1  -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" \) -exec basename {} \; | sort | while read -r A ; do  echo -en "$A\x00icon\x1f""${CACHE_DIR}"/"$A\n" ; done | rofi -dmenu -theme $ROFI_THEME_WAL -p "wallpaper")
+WALLPAPER=$(find "${WALLPAPERS_DIR}"  -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" \) -exec basename {} \; | sort | while read -r A ; do  echo -en "$A\x00icon\x1f""${CACHE_DIR}"/"$A\n" ; done | rofi -dmenu -theme $ROFI_THEME_WAL -p "wallpaper")
 
 if [[ -n "$WALLPAPER" ]]; then
+   echo $WALLPAPER
 	setwallpaper $WALLPAPERS_DIR$WALLPAPER
 	post_run
 	sendnotification 'wall.sh' 'Wallpaper changed.' $WALLPAPERS_DIR/$WALLPAPER

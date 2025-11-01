@@ -34,7 +34,7 @@ delayoption3="After 10 sec delay"
 
 options="$option1\n$option2\n$option3\n$option4"
 
-choice=$(echo -e "$options" | walker --dmenu)
+choice=$(echo -e "$options" | walker --dmenu --height 300)
 # choice=$(echo -e "$options" | rofi -i -dmenu -no-show-icons -no-sidebar-mode -p "screenshot" -l 4)
 #
 
