@@ -13,7 +13,7 @@ case $session in
       tmux new-window -t $session:2 -n "notes"
       tmux send -t $session:2 "notebook" ENTER
 
-      tmux new-window -t $session:3 -n "tickets"
-      tmux send -t $session:3 "nvim ~/Notes/tickets.md" ENTER
+      # tmux new-window -t $session:3 -n "tickets"
+      # tmux send -t $session:3 "nvim ~/Notes/tickets.md" ENTER
       ;;
 esac
