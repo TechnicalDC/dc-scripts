@@ -1,10 +1,10 @@
 #!/bin/bash
 
 WALLPAPERS_DIR="$HOME/Pictures/wallpapers/"
-CACHE_DIR="${HOME}/.cache/wally/wallpapers"
+CACHE_DIR="${HOME}/.cache/wallpapers"
 HYPRPAPER_CONF="$HOME/.config/hypr/hyprpaper.conf"
 BLUR="50x30"
-BLURRED_WALLPAPER="$HOME/.cache/wal/wallpaper_blurred.png"
+BLURRED_WALLPAPER="$HOME/.cache/wallpaper_blurred.png"
 ROFI_THEME_WAL="$HOME/.config/rofi/themes/blur/wallpaper.rasi"
 
 generate_cache () {
@@ -25,7 +25,6 @@ generate_cache () {
       if [ -f "$imagen" ]; then
          nombre_archivo=$(basename "$imagen")
          if [ ! -f "$CACHE_DIR/${nombre_archivo}" ] ; then
-            # echo $imagen
             magick "$imagen" -strip -thumbnail 500x500^ -gravity center -extent 500x500 "$CACHE_DIR/${nombre_archivo}"
          fi
       fi
@@ -33,13 +32,9 @@ generate_cache () {
 }
 
 setwallpaper () {
-   cp $1 ~/.cache/wal/wallpaper.jpg
+   cp $1 ~/.cache/wallpaper.jpg
    magick $1 -blur $BLUR $BLURRED_WALLPAPER
-   magick $1 -strip -thumbnail 500x500^ -gravity center -extent 500x500 $ROFI_BACKGROUND
-   # $WALLPAPER_CMD $2
-   # echo -e "preload = $1\nwallpaper = , $1" > $HYPRPAPER_CONF
 	swww img $1 --transition-type center
-   # killall hyprpaper && hyprpaper &
 }
 
 sendnotification () {

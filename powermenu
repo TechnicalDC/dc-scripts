@@ -9,6 +9,7 @@
 # Github: https://github/TechnicalDC
 
 USE_ICON="no"
+ROFI_THEME="$HOME/.config/rofi/themes/blur/powermenu.rasi"
 
 option1="Lock"
 option2="Logout"
@@ -26,8 +27,7 @@ options="$option1\n"
 options="$options$option2\n"
 options="$options$option3\n$option4"
 
-choice=$(echo -e "$options" | walker --dmenu --height 300)
-# choice=$(echo -e "$options" | rofi -dmenu -i -no-show-icons -p "session" -l 4)
+choice=$(echo -e "$options" | rofi -dmenu -i -no-show-icons -theme $ROFI_THEME -l 4)
 
 case $choice in
 	$option1)
