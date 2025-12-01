@@ -5,7 +5,7 @@ CACHE_DIR="${HOME}/.cache/wallpapers"
 HYPRPAPER_CONF="$HOME/.config/hypr/hyprpaper.conf"
 BLUR="50x30"
 BLURRED_WALLPAPER="$HOME/.cache/wallpaper_blurred.png"
-ROFI_THEME_WAL="$HOME/.config/rofi/themes/blur/wallpaper.rasi"
+ROFI_THEME_WAL="$HOME/.config/rofi/themes/style-1/wallpaper.rasi"
 
 generate_cache () {
    # Create cache dir if not exists
@@ -32,7 +32,7 @@ generate_cache () {
 }
 
 setwallpaper () {
-   cp $1 ~/.cache/wallpaper.jpg
+   cp $1 ~/.cache/wallpaper
    magick $1 -blur $BLUR $BLURRED_WALLPAPER
 	swww img $1 --transition-type center
 }
@@ -48,6 +48,5 @@ WALLPAPER=$(find "${WALLPAPERS_DIR}"  -type f \( -iname "*.jpg" -o -iname "*.jpe
 if [[ -n "$WALLPAPER" ]]; then
    echo $WALLPAPER
 	setwallpaper $WALLPAPERS_DIR$WALLPAPER
-	post_run
 	sendnotification 'wall.sh' 'Wallpaper changed.' $WALLPAPERS_DIR/$WALLPAPER
 fi

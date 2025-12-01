@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+ROFI_THEME="$HOME/.config/rofi/themes/style-1/mpc.rasi"
+
 # Theme Elements
 status="`mpc status`"
 if [[ -z "$status" ]]; then
@@ -44,13 +46,7 @@ fi
 
 # Rofi CMD
 rofi_cmd() {
-	rofi -i -dmenu \
-		-p "$prompt" \
-		-mesg "$mesg" \
-		${active} ${urgent} \
-		-markup-rows \
-	   -l 6 \
-      -no-show-icons
+	rofi -i -dmenu -p "$prompt :: $mesg" -theme $ROFI_THEME -l 6 
 }
 
 # Pass variables to rofi dmenu

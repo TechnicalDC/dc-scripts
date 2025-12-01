@@ -14,6 +14,7 @@
 DIR="$HOME/Pictures/screenshots/"
 REL_DIR="~/Pictures/screenshots/"
 NAME="grim_$(date +%d%m%Y_%H%M%S).png"
+ROFI_THEME="$HOME/.config/rofi/themes/style-1/screenshot.rasi"
 USE_ICON="no"
 
 option1="Capture screen"
@@ -34,7 +35,7 @@ delayoption3="After 10 sec delay"
 
 options="$option1\n$option2\n$option3\n$option4"
 
-choice=$(echo -e "$options" | rofi -i -dmenu -no-show-icons -no-sidebar-mode -p "screenshot" -l 4)
+choice=$(echo -e "$options" | rofi -i -dmenu -no-show-icons -no-sidebar-mode -theme $ROFI_THEME -l 4)
 
 case $choice in
    $option1)
@@ -42,7 +43,7 @@ case $choice in
       grim $DIR$NAME && notify-send 'Grim' 'Screenshot saved.' -i $DIR$NAME -t 2000 ;;
    $option2)
       delayoptions="$delayoption1\n$delayoption2\n$delayoption3"
-      delay=$(echo -e "$delayoptions" | rofi -i -dmenu -no-show-icons -no-sidebar-mode -l 3)
+      delay=$(echo -e "$delayoptions" | rofi -i -dmenu -no-show-icons -no-sidebar-mode -l 3 -theme $ROFI_THEME)
 
       case $delay in
          $delayoption1)
