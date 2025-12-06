@@ -13,7 +13,7 @@ if [ -n "$HOSTNAME" ]; then
 
    case $HOSTNAME in
       dev*)
-         tmux select-pane -P 'fg=green' ;;
+         tmux select-pane -P 'fg=cyan' ;;
       public)
          tmux select-pane -P 'fg=red' ;;
       *)
