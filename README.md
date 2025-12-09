@@ -36,6 +36,4 @@ Various shell scripts for rofi
 ## Credits
 > Few scripts here is modified version of scripts from below authors
 * [Marco98](https://github.com/Marco98/rofi-mpc) for mpc script
-* [LukeSmithxyz](https://github.com/LukeSmithxyz/voidrice/blob/master/.local/bin/dmenurecord) for screen recording script
-* [davatorium](https://github.com/davatorium/rofi-scripts) for tmux session script
 * [nickclyde](https://github.com/nickclyde/rofi-bluetooth) for bluetooth script
