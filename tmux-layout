@@ -3,6 +3,6 @@
 LAYOUTS="tiled even-horizontal even-vertical main-horizontal main-horizontal-mirrored main-vertical main-vertical-mirrored"
 
 # Select the layout
-SELECTED=$(echo $LAYOUTS | tr ' ' '\n' | fzf --tmux --border double --prompt "[layout] ")
+SELECTED=$(echo $LAYOUTS | tr ' ' '\n' | fzf --tmux --border double --prompt "layout  ")
 
 tmux select-layout $SELECTED
