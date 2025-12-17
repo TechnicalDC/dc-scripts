@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ROFI_THEME="$HOME/.config/rofi/themes/style-1/mpc.rasi"
+ROFI_THEME="$HOME/.config/rofi/themes/style-3/mpc.rasi"
 
 # Theme Elements
 status="`mpc status`"
@@ -9,7 +9,7 @@ if [[ -z "$status" ]]; then
 	mesg="MPD is Offline"
 else
 	prompt="`mpc -f "%artist%" current`"
-	mesg="`mpc -f "%title%" current` :: `mpc status | grep "#" | awk '{print $3}'`"
+	mesg="`mpc -f "%title%" current` [ `mpc status | grep "#" | awk '{print $3}'` ]"
 fi
 
 # Options
@@ -46,7 +46,7 @@ fi
 
 # Rofi CMD
 rofi_cmd() {
-	rofi -i -dmenu -p "$prompt :: $mesg" -theme $ROFI_THEME -l 6 
+	rofi -i -dmenu -p "$prompt - $mesg" -theme $ROFI_THEME -l 6 
 }
 
 # Pass variables to rofi dmenu

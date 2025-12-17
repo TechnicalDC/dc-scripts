@@ -14,11 +14,11 @@
 DIR="$HOME/Pictures/screenshots/"
 REL_DIR="~/Pictures/screenshots/"
 NAME="grim_$(date +%d%m%Y_%H%M%S).png"
-ROFI_THEME="$HOME/.config/rofi/themes/style-1/screenshot.rasi"
+ROFI_THEME="$HOME/.config/rofi/themes/style-3/screenshot.rasi"
 USE_ICON="no"
 
 option1="Capture all screens"
-option2="Capture focused screen"
+option2="Capture screen"
 option3="Capture screen with delay"
 option4="Capture selection"
 option5="Open with Gimp"
@@ -55,11 +55,11 @@ case $choice in
 
       case $delay in
          $delayoption1)
-            sleep 3; grim $DIR$NAME && notify-send 'Grim' 'Screenshot saved.' -i $DIR$NAME -t 2000 ;;
+            sleep 3; grim -o $(get_monitor) $DIR$NAME && notify-send 'Grim' 'Screenshot saved.' -i $DIR$NAME -t 2000 ;;
          $delayoption2)
-            sleep 5; grim $DIR$NAME && notify-send 'Grim' 'Screenshot saved.' -i $DIR$NAME -t 2000 ;;
+            sleep 5; grim -o $(get_monitor) $DIR$NAME && notify-send 'Grim' 'Screenshot saved.' -i $DIR$NAME -t 2000 ;;
          $delayoption3)
-            sleep 10; grim $DIR$NAME && notify-send 'Grim' 'Screenshot saved.' -i $DIR$NAME -t 2000 ;;
+            sleep 10; grim -o $(get_monitor) $DIR$NAME && notify-send 'Grim' 'Screenshot saved.' -i $DIR$NAME -t 2000 ;;
       esac ;;
 
    $option4)

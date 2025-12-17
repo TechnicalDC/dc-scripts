@@ -5,7 +5,7 @@ CACHE_DIR="${HOME}/.cache/wallpapers"
 HYPRPAPER_CONF="$HOME/.config/hypr/hyprpaper.conf"
 BLUR="50x30"
 BLURRED_WALLPAPER="$HOME/.cache/wallpaper_blurred.png"
-ROFI_THEME_WAL="$HOME/.config/rofi/themes/style-1/wallpaper.rasi"
+ROFI_THEME_WAL="$HOME/.config/rofi/themes/style-3/wallpaper.rasi"
 
 generate_cache () {
    # Create cache dir if not exists
@@ -13,12 +13,7 @@ generate_cache () {
       mkdir -p "${CACHE_DIR}"
    fi
 
-   physical_monitor_size=24
-   monitor_res=$(hyprctl monitors |grep -A2 Monitor |head -n 2 |awk '{print $1}' | grep -oE '^[0-9]+')
-   dotsperinch=$(echo "scale=2; $monitor_res / $physical_monitor_size" | bc | xargs printf "%.0f")
-   monitor_res=$(( $monitor_res * $physical_monitor_size / $dotsperinch ))
-
-   rofi_override="element-icon{size:${monitor_res}px;border-radius:0px;}"
+   rofi_override="element-icon{size:100px;border-radius:0px;}"
 
    # Convert images in directory and save to cache dir
    for imagen in "$WALLPAPERS_DIR"/*.{jpg,jpeg,png,webp}; do
@@ -34,6 +29,7 @@ generate_cache () {
 setwallpaper () {
    cp $1 ~/.cache/wallpaper
    magick $1 -blur $BLUR $BLURRED_WALLPAPER
+   magick "$1" -strip -thumbnail 500x500^ -gravity center -extent 500x500 "$HOME/.cache/fastfetch"
 	swww img $1 --transition-type center
 }
 

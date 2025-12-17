@@ -9,7 +9,7 @@
 # Github: https://github/TechnicalDC
 
 USE_ICON="no"
-ROFI_THEME="$HOME/.config/rofi/themes/style-1/powermenu.rasi"
+ROFI_THEME="$HOME/.config/rofi/themes/style-3/powermenu.rasi"
 
 option1="Lock"
 option2="Logout"
