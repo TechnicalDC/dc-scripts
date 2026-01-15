@@ -9,16 +9,16 @@
 
 #!/usr/bin/env bash
 
-TMUX_POPUP_OPTS="-b rounded -w 70% -h 70%"
-TMUX_FIXED_POPUP_OPTS="-b rounded -w 82 -h 27"
-TMUX_BIG_POPUP_OPTS="-b rounded -w 80% -h 80%"
+TMUX_POPUP_OPTS="-b single -w 70% -h 70%"
+TMUX_FIXED_POPUP_OPTS="-b single -w 82 -h 27"
+TMUX_BIG_POPUP_OPTS="-b single -w 80% -h 80%"
 
 case $1 in
    "todo")
-      tmux display-popup -d "#{pane_current_path}" $TMUX_POPUP_OPTS -E "vit"
+      tmux display-popup -d "#{pane_current_path}" -T " todo " $TMUX_POPUP_OPTS -E "nvim ~/Notes/todo.md"
       ;;
    "git")
-      tmux display-popup -d "#{pane_current_path}" $TMUX_BIG_POPUP_OPTS -E "lazygit"
+      tmux display-popup -d "#{pane_current_path}" -T " lazygit " $TMUX_BIG_POPUP_OPTS -E "lazygit"
       ;;
    "persist")
       tmux display-popup -d "#{pane_current_path}" $TMUX_POPUP_OPTS -E "tmux attach -t persist || tmux new-session -s persist"
@@ -27,6 +27,6 @@ case $1 in
       tmux display-popup -d "#{pane_current_path}" $TMUX_FIXED_POPUP_OPTS -E "tmux attach -t qad-client || tmux new-session -s qad-client"
       ;;
    *)
-      tmux display-popup -d "#{pane_current_path}" $TMUX_POPUP_OPTS -E "$@"
+      tmux display-popup -d "#{pane_current_path}" -T " $@ " $TMUX_POPUP_OPTS -E "$@"
       ;;
 esac
