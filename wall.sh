@@ -30,7 +30,8 @@ setwallpaper () {
    cp $1 ~/.cache/wallpaper
    magick $1 -blur $BLUR $BLURRED_WALLPAPER
    magick "$1" -strip -thumbnail 500x500^ -gravity center -extent 500x500 "$HOME/.cache/fastfetch"
-	swww img $1 --transition-type center
+   swww img $1 --transition-type center
+   swaybg --output "*" --image $BLURRED_WALLPAPER --mode fill &
 }
 
 sendnotification () {
