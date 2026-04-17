@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-HOSTNAME=$(grep "Host " $HOME/.ssh/config | cut -d' ' -f2 | sort | fzf --tmux 100%,100%,border-native --prompt "ssh  ")
+HOSTNAME=$(grep "Host " $HOME/.ssh/config | cut -d' ' -f2 | sort | fzf --tmux --border rounded --border-label " select hostname for SSH ")
 
 if [ -n "$HOSTNAME" ]; then
 
