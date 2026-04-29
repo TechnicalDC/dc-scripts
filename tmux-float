@@ -9,9 +9,9 @@
 
 #!/usr/bin/env bash
 
-TMUX_POPUP_OPTS="-b single -w 70% -h 70%"
-TMUX_FIXED_POPUP_OPTS="-b single -w 82 -h 27"
-TMUX_BIG_POPUP_OPTS="-b single -w 80% -h 80%"
+TMUX_POPUP_OPTS="-b rounded -w 70% -h 70%"
+TMUX_FIXED_POPUP_OPTS="-b rounded -w 82 -h 27"
+TMUX_BIG_POPUP_OPTS="-b rounded -w 80% -h 80%"
 
 case $1 in
    "todo")
